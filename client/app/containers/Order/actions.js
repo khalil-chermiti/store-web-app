@@ -198,6 +198,10 @@ export const addOrder = () => {
       const cartId = localStorage.getItem('cart_id');
       const total = getState().cart.cartTotal;
 
+
+      const response = await axios.get(`${API_URL}/address`);
+      console.log("the res is : ", response);
+
       // FIXME : we need to check if the user has an address or not
       // if he has an address we add order else we redirect him
       // to add address page
