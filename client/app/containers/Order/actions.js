@@ -166,14 +166,11 @@ export const updateOrderItemStatus = (itemId, status) => {
     try {
       const order = getState().order.order;
 
-      const response = await axios.put(
-        `${API_URL}/order/status/item/${itemId}`,
-        {
-          orderId: order._id,
-          cartId: order.cartId,
-          status
-        }
-      );
+      const response = await axios.put(`${API_URL}/order/status/item/${itemId}`, {
+        orderId: order._id,
+        cartId: order.cartId,
+        status
+      });
 
       if (response.data.orderCancelled) {
         dispatch(push(`/dashboard/orders`));
@@ -200,6 +197,10 @@ export const addOrder = () => {
     try {
       const cartId = localStorage.getItem('cart_id');
       const total = getState().cart.cartTotal;
+
+      // FIXME : we need to check if the user has an address or not
+      // if he has an address we add order else we redirect him
+      // to add address page
 
       if (cartId) {
         const response = await axios.post(`${API_URL}/order/add`, {
