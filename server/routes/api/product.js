@@ -17,8 +17,25 @@ const {
 } = require('../../utils/queries');
 const { ROLES } = require('../../constants');
 
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
+// const storage = multer.memoryStorage();
+// const upload = multer({ storage });
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '/tmp/images');
+  },
+  filename: function (req, file, cb) {
+    const imageExtension = file.originalname.split('.').pop();
+    const uniqueSuffix =
+      Date.now().toString() +
+      '-' +
+      Math.round(Math.random() * 1e9) +
+      '.' +
+      imageExtension;
+    cb(null, file.fieldname + '-' + uniqueSuffix);
+  }
+});
+const upload = multer({ storage: storage });
 
 // fetch product slug api
 router.get('/item/:slug', async (req, res) => {
@@ -154,7 +171,6 @@ router.get('/list', async (req, res) => {
       count
     });
   } catch (error) {
-    console.log('error', error);
     res.status(400).json({
       error: 'Your request could not be processed. Please try again.'
     });
@@ -217,7 +233,7 @@ router.post(
         return res.status(400).json({ error: 'This sku is already in use.' });
       }
 
-      const { imageUrl, imageKey } = await s3Upload(image);
+      // const { imageUrl, imageKey } = await s3Upload(image);
 
       const product = new Product({
         sku,
@@ -228,8 +244,8 @@ router.post(
         taxable,
         isActive,
         brand,
-        imageUrl,
-        imageKey
+        imageUrl: 'http://localhost:3000/api' + image.path,
+        imageKey: image.path
       });
 
       const savedProduct = await product.save();

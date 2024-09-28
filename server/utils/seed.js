@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const { faker } = require('@faker-js/faker');
 
-const setupDB = require('./db');
+const { setupDB } = require('./db');
 const { ROLES } = require('../constants');
 const User = require('../models/user');
 const Brand = require('../models/brand');
@@ -42,12 +42,18 @@ const seedDB = async () => {
       await user.save();
       console.log(`${chalk.green('✓')} ${chalk.green('Admin user seeded.')}`);
     } else {
-      console.log(`${chalk.yellow('!')} ${chalk.yellow('Admin user already exists, skipping seeding for admin user.')}`);
+      console.log(
+        `${chalk.yellow('!')} ${chalk.yellow('Admin user already exists, skipping seeding for admin user.')}`
+      );
     }
 
     const categoriesCount = await Category.countDocuments();
     if (categoriesCount >= NUM_CATEGORIES) {
-      console.log(`${chalk.yellow('!')} ${chalk.yellow('Sufficient number of categories already exist, skipping seeding for categories.')}`);
+      console.log(
+        `${chalk.yellow('!')} ${chalk.yellow(
+          'Sufficient number of categories already exist, skipping seeding for categories.'
+        )}`
+      );
       categories = await Category.find().select('_id');
     } else {
       for (let i = 0; i < NUM_CATEGORIES; i++) {
@@ -64,7 +70,11 @@ const seedDB = async () => {
 
     const brandsCount = await Brand.countDocuments();
     if (brandsCount >= NUM_BRANDS) {
-      console.log(`${chalk.yellow('!')} ${chalk.yellow('Sufficient number of brands already exist, skipping seeding for brands.')}`);
+      console.log(
+        `${chalk.yellow('!')} ${chalk.yellow(
+          'Sufficient number of brands already exist, skipping seeding for brands.'
+        )}`
+      );
     } else {
       for (let i = 0; i < NUM_BRANDS; i++) {
         const brand = new Brand({
@@ -79,7 +89,11 @@ const seedDB = async () => {
 
     const productsCount = await Product.countDocuments();
     if (productsCount >= NUM_PRODUCTS) {
-      console.log(`${chalk.yellow('!')} ${chalk.yellow('Sufficient number of products already exist, skipping seeding for products.')}`);
+      console.log(
+        `${chalk.yellow('!')} ${chalk.yellow(
+          'Sufficient number of products already exist, skipping seeding for products.'
+        )}`
+      );
     } else {
       const brands = await Brand.find().select('_id');
       for (let i = 0; i < NUM_PRODUCTS; i++) {
