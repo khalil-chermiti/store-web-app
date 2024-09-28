@@ -56,7 +56,6 @@ class ProductPage extends React.PureComponent {
       reviewFormErrors
     } = this.props;
 
-    alert(product.imageUrl);
 
     return (
       <div className='product-shop'>
