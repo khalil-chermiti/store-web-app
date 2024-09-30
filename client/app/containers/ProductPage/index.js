@@ -56,6 +56,7 @@ class ProductPage extends React.PureComponent {
       reviewFormErrors
     } = this.props;
 
+
     return (
       <div className='product-shop'>
         {isLoading ? (
@@ -67,11 +68,10 @@ class ProductPage extends React.PureComponent {
                 <div className='position-relative'>
                   <img
                     className='item-image'
-                    src={`${
-                      product.imageUrl
-                        ? product.imageUrl
-                        : '/images/placeholder-image.png'
-                    }`}
+                    src={`${product.imageUrl
+                      ? product.imageUrl
+                      : '/images/placeholder-image.png'
+                      }`}
                   />
                   {product.inventory <= 0 && !shopFormErrors['quantity'] ? (
                     <p className='stock out-of-stock'>Out of stock</p>

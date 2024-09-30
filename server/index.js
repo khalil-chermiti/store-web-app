@@ -4,6 +4,8 @@ const chalk = require('chalk');
 const cors = require('cors');
 const helmet = require('helmet');
 
+const path = require('path');
+
 const keys = require('./config/keys');
 const routes = require('./routes');
 const socket = require('./socket');
@@ -12,6 +14,7 @@ const setupDB = require('./utils/db');
 const { port } = keys;
 const app = express();
 
+app.use("/images", express.static(path.join('utils/images')))
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(
