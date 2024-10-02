@@ -261,7 +261,7 @@ class Navigation extends React.PureComponent {
                       to='/shop'
                       activeClassName='active'
                     >
-                      Shop
+                      Boutique
                     </NavLink>
                   </NavItem>
                   {authenticated ? (

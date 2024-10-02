@@ -21,8 +21,16 @@ import Page404 from '../../components/Common/Page404';
 import ProductFilter from '../../components/Store/ProductFilter';
 import Pagination from '../../components/Common/Pagination';
 import SelectOption from '../../components/Common/SelectOption';
+import NavigationMenu from '../NavigationMenu';
+import Button from '../../components/Common/Button';
 
 class Shop extends React.PureComponent {
+
+  toggleMenu() {
+    this.props.fetchStoreCategories();
+    this.props.toggleMenu();
+  }
+
   componentDidMount() {
     document.body.classList.add('shop-page');
   }
@@ -48,7 +56,15 @@ class Shop extends React.PureComponent {
             md={{ size: 12, order: 1 }}
             lg={{ size: 3, order: 1 }}
           >
-            <ProductFilter filterProducts={filterProducts} />
+
+
+
+
+
+            {/* <ProductFilter filterProducts={filterProducts} /> */}
+
+
+
           </Col>
           <Col
             xs={{ size: 12, order: 2 }}
@@ -91,6 +107,19 @@ class Shop extends React.PureComponent {
                   handleSelectChange={(n, v) => {
                     filterProducts('sorting', n.value);
                   }}
+                />
+              </Col>
+              <Col
+                xs={{ size: 12, order: 2 }}
+                sm={{ size: 12, order: 2 }}
+                md={{ size: 5, order: 2 }}
+                lg={{ size: 4, order: 2 }}
+              >
+                <Button
+                  variant='primary'
+                  text='Catégorie'
+                  className='bag-btn mb-4'
+                  onClick={() => this.toggleMenu()}
                 />
               </Col>
             </Row>
