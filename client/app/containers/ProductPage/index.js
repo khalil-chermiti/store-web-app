@@ -74,9 +74,10 @@ class ProductPage extends React.PureComponent {
                       }`}
                   />
                   {product.inventory <= 0 && !shopFormErrors['quantity'] ? (
-                    <p className='stock out-of-stock'>Out of stock</p>
+                    <p className='stock out-of-stock'>
+                      Rupture de stock</p>
                   ) : (
-                    <p className='stock in-stock'>In stock</p>
+                    <p className='stock in-stock'>Disponible</p>
                   )}
                 </div>
               </Col>
@@ -91,7 +92,7 @@ class ProductPage extends React.PureComponent {
                       <hr />
                       {product.brand && (
                         <p className='by'>
-                          see more from{' '}
+                          Voir plus par   {' '}
                           <Link
                             to={`/shop/brand/${product.brand.slug}`}
                             className='default-link'
@@ -101,13 +102,13 @@ class ProductPage extends React.PureComponent {
                         </p>
                       )}
                       <p className='item-desc'>{product.description}</p>
-                      <p className='price'>${product.price}</p>
+                      <p className='price'>{product.price} DT</p>
                     </div>
                     <div className='item-customize'>
                       <Input
                         type={'number'}
                         error={shopFormErrors['quantity']}
-                        label={'Quantity'}
+                        label={'Quantité'}
                         name={'quantity'}
                         decimals={false}
                         min={1}
@@ -144,7 +145,7 @@ class ProductPage extends React.PureComponent {
                           disabled={
                             product.quantity <= 0 && !shopFormErrors['quantity']
                           }
-                          text='Add To Bag'
+                          text='Ajouter au panier'
                           className='bag-btn'
                           icon={<BagIcon />}
                           onClick={() => handleAddToCart(product)}

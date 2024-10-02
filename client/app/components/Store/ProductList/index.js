@@ -38,11 +38,10 @@ const ProductList = props => {
                     <div className='item-image-box'>
                       <img
                         className='item-image'
-                        src={`${
-                          product.imageUrl
-                            ? product.imageUrl
-                            : '/images/placeholder-image.png'
-                        }`}
+                        src={`${product.imageUrl
+                          ? product.imageUrl
+                          : '/images/placeholder-image.png'
+                          }`}
                       />
                     </div>
                   </div>
@@ -51,23 +50,22 @@ const ProductList = props => {
                       <h1 className='item-name'>{product.name}</h1>
                       {product.brand && Object.keys(product.brand).length > 0 && (
                         <p className='by'>
-                          By <span>{product.brand.name}</span>
+                          Par <span>{product.brand.name}</span>
                         </p>
                       )}
                       <p className='item-desc mb-0'>{product.description}</p>
                     </div>
                   </div>
                   <div className='d-flex flex-row justify-content-between align-items-center px-4 mb-2 item-footer'>
-                    <p className='price mb-0'>${product.price}</p>
+                    <p className='price mb-0'>{product.price} DT</p>
                     {product.totalReviews > 0 && (
                       <p className='mb-0'>
                         <span className='fs-16 fw-normal mr-1'>
                           {parseFloat(product?.averageRating).toFixed(1)}
                         </span>
                         <span
-                          className={`fa fa-star ${
-                            product.totalReviews !== 0 ? 'checked' : ''
-                          }`}
+                          className={`fa fa-star ${product.totalReviews !== 0 ? 'checked' : ''
+                            }`}
                           style={{ color: '#ffb302' }}
                         ></span>
                       </p>

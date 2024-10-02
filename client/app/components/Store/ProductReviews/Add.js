@@ -28,13 +28,13 @@ const Add = props => {
   return (
     <div className='bg-white p-4 box-shadow-primary add-review'>
       <form onSubmit={handleSubmit} noValidate>
-        <h3 className='mb-3'>Add Review</h3>
+        <h3 className='mb-3'>Ajoutez votre Avis</h3>
         <Row>
           <Col xs='12' md='12'>
             <Input
               type={'text'}
               error={reviewFormErrors['title']}
-              label={'Title'}
+              label={'Titre'}
               name={'title'}
               placeholder={'Enter Review title'}
               value={reviewFormData.title}
@@ -47,7 +47,7 @@ const Add = props => {
             <Input
               type={'textarea'}
               error={reviewFormErrors['review']}
-              label={'Comment'}
+              label={'Commentaire'}
               name={'review'}
               placeholder={'Write Review'}
               value={reviewFormData.review}
