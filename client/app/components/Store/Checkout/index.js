@@ -22,7 +22,7 @@ const Checkout = props => {
         {authenticated ? (
           <Button
             variant='primary'
-            text='Place Order'
+            text='Passer la commande'
             onClick={() => placeOrder()}
           />
         ) : (
