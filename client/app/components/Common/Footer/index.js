@@ -13,9 +13,9 @@ import Newsletter from '../../../containers/Newsletter';
 
 const Footer = () => {
   const infoLinks = [
-    { id: 0, name: 'Contact Us', to: '/contact' },
-    { id: 1, name: 'Sell With Us', to: '/sell' },
-    { id: 2, name: 'Shipping', to: '/shipping' }
+    { id: 0, name: 'Contactez-nous', to: '/contact' },
+    { id: 1, name: 'vendre avec nous', to: '/sell' },
+    { id: 2, name: 'livraison', to: '/shipping' }
   ];
 
   const footerBusinessLinks = (
@@ -40,32 +40,37 @@ const Footer = () => {
   return (
     <footer className='footer'>
       <Container>
-        <div className='footer-content'>
+        <div
+          className='footer-content'
+          style={{
+            textAlign: 'center'
+          }}
+        >
           <div className='footer-block'>
             <div className='block-title'>
-              <h3 className='text-uppercase'>Customer Service</h3>
+              <h3 className='text-uppercase'>Service client</h3>
             </div>
             <div className='block-content'>
               <ul>{footerLinks}</ul>
             </div>
           </div>
-          <div className='footer-block'>
+          {/* <div className='footer-block'>
             <div className='block-title'>
-              <h3 className='text-uppercase'>Links</h3>
+              <h3 className='text-uppercase'>Liens</h3>
             </div>
             <div className='block-content'>
               <ul>{footerLinks}</ul>
             </div>
-          </div>
-          <div className='footer-block'>
+          </div> */}
+          {/* <div className='footer-block'>
             <div className='block-title'>
               <h3 className='text-uppercase'>Newsletter</h3>
               <Newsletter />
             </div>
-          </div>
+          </div> */}
         </div>
         <div className='footer-copyright'>
-          <span>© {new Date().getFullYear()} MERN Store</span>
+          <span>© {new Date().getFullYear()} Maison d'Algues</span>
         </div>
         <ul className='footer-social-item'>
           <li>

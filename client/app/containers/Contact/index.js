@@ -26,7 +26,7 @@ class Contact extends React.PureComponent {
 
     return (
       <div className='contact'>
-        <h3 className='text-uppercase'>Contact Information</h3>
+        <h3 className='text-uppercase'>Informations de Contact</h3>
         <hr />
         <form onSubmit={handleSubmit}>
           <Row>
@@ -34,9 +34,9 @@ class Contact extends React.PureComponent {
               <Input
                 type={'text'}
                 error={formErrors['name']}
-                label={'Name'}
+                label={'Nom'}
                 name={'name'}
-                placeholder={'You Full Name'}
+                placeholder={'Votre nom complet'}
                 value={contactFormData.name}
                 onInputChange={(name, value) => {
                   contactFormChange(name, value);
@@ -47,9 +47,9 @@ class Contact extends React.PureComponent {
               <Input
                 type={'text'}
                 error={formErrors['email']}
-                label={'Email'}
+                label={'E-mail'}
                 name={'email'}
-                placeholder={'Your Email Address'}
+                placeholder={'Votre adresse e-mail'}
                 value={contactFormData.email}
                 onInputChange={(name, value) => {
                   contactFormChange(name, value);
@@ -62,7 +62,7 @@ class Contact extends React.PureComponent {
                 error={formErrors['message']}
                 label={'Message'}
                 name={'message'}
-                placeholder={'Please Describe Your Message'}
+                placeholder={'Veuillez décrire votre message'}
                 value={contactFormData.message}
                 onInputChange={(name, value) => {
                   contactFormChange(name, value);
@@ -72,7 +72,7 @@ class Contact extends React.PureComponent {
           </Row>
           <hr />
           <div className='contact-actions'>
-            <Button type='submit' text='Submit' />
+            <Button type='submit' text='Soumettre' />
           </div>
         </form>
       </div>

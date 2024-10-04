@@ -13,8 +13,8 @@ import Input from '../../Common/Input';
 import Button from '../../Common/Button';
 
 const recommedableSelect = [
-  { value: 1, label: 'Yes' },
-  { value: 0, label: 'No' }
+  { value: 1, label: 'Oui' },
+  { value: 0, label: 'Non' }
 ];
 
 const Add = props => {
@@ -36,7 +36,7 @@ const Add = props => {
               error={reviewFormErrors['title']}
               label={'Titre'}
               name={'title'}
-              placeholder={'Enter Review title'}
+              placeholder={'Entrez le titre de l’avis'}
               value={reviewFormData.title}
               onInputChange={(name, value) => {
                 reviewChange(name, value);
@@ -49,7 +49,7 @@ const Add = props => {
               error={reviewFormErrors['review']}
               label={'Commentaire'}
               name={'review'}
-              placeholder={'Write Review'}
+              placeholder={'Écrivez un avis'}
               value={reviewFormData.review}
               onInputChange={(name, value) => {
                 reviewChange(name, value);
@@ -60,7 +60,7 @@ const Add = props => {
             <Input
               type={'stars'}
               error={reviewFormErrors['rating']}
-              label={'Rating'}
+              label={'Évaluation'}
               name={'rating'}
               value={reviewFormData.rating}
               onInputChange={(name, value) => {
@@ -71,7 +71,7 @@ const Add = props => {
           <Col xs='12' md='12'>
             <SelectOption
               error={reviewFormErrors['isRecommended']}
-              label={'Will you recommend this product?'}
+              label={'Recommanderez-vous ce produit ?'}
               name={'isRecommended'}
               value={reviewFormData.isRecommended}
               options={recommedableSelect}
@@ -82,7 +82,7 @@ const Add = props => {
           </Col>
         </Row>
         <div className='mt-4'>
-          <Button type='submit' text='Publish Review' />
+          <Button type='submit' text='Publier l’Avis' />
         </div>
       </form>
     </div>

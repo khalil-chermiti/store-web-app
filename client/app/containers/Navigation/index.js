@@ -81,10 +81,11 @@ class Navigation extends React.PureComponent {
         <div className='d-flex'>
           <img
             className='item-image'
-            src={`${suggestion.imageUrl
-              ? suggestion.imageUrl
-              : '/images/placeholder-image.png'
-              }`}
+            src={`${
+              suggestion.imageUrl
+                ? suggestion.imageUrl
+                : '/images/placeholder-image.png'
+            }`}
           />
           <div>
             <Container>
@@ -139,21 +140,21 @@ class Navigation extends React.PureComponent {
         <div className='header-info'>
           <Container>
             <Row>
-              <Col md='4' className='text-center d-none d-md-block'>
+              <Col md='6' className='text-center d-none d-md-block'>
                 <i className='fa fa-truck' />
-                <span>Free Shipping</span>
+                <span>livraison à domicile</span>
               </Col>
-              <Col md='4' className='text-center d-none d-md-block'>
+              {/* <Col md='4' className='text-center d-none d-md-block'>
                 <i className='fa fa-credit-card' />
                 <span>Payment Methods</span>
-              </Col>
-              <Col md='4' className='text-center d-none d-md-block'>
+              </Col> */}
+              <Col md='6' className='text-center d-none d-md-block'>
                 <i className='fa fa-phone' />
-                <span>Call us 951-999-9999</span>
+                <span>Telephone: 951-999-9999</span>
               </Col>
               <Col xs='12' className='text-center d-block d-md-none'>
                 <i className='fa fa-phone' />
-                <span> Need advice? Call us 951-999-9999</span>
+                <span> Telephone: 951-999-9999</span>
               </Col>
             </Row>
           </Container>
@@ -225,7 +226,7 @@ class Navigation extends React.PureComponent {
               sm={{ size: 12, order: 2 }}
               md={{ size: 9, order: 1 }}
               lg={{ size: 4, order: 3 }}
-            // className='px-0'
+              // className='px-0'
             >
               <Navbar color='light' light expand='md' className='mt-1 mt-md-0'>
                 <CartIcon
@@ -242,7 +243,7 @@ class Navigation extends React.PureComponent {
                       isOpen={isBrandOpen}
                     >
                       <DropdownToggle nav>
-                        Brands
+                        Marques
                         <span className='fa fa-chevron-down dropdown-caret'></span>
                       </DropdownToggle>
                       <DropdownMenu right className='nav-brand-dropdown'>
@@ -282,7 +283,7 @@ class Navigation extends React.PureComponent {
                   ) : (
                     <UncontrolledDropdown nav inNavbar>
                       <DropdownToggle nav>
-                        Welcome!
+                        Bienvenue!
                         <span className='fa fa-chevron-down dropdown-caret'></span>
                       </DropdownToggle>
                       <DropdownMenu right>
