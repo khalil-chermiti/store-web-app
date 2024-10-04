@@ -10,32 +10,13 @@ const Category = require('../../models/category');
 const auth = require('../../middleware/auth');
 const role = require('../../middleware/role');
 const checkAuth = require('../../utils/auth');
-const { s3Upload } = require('../../utils/storage');
+const { multerStorage } = require('../../utils/storage');
+
 const {
   getStoreProductsQuery,
   getStoreProductsWishListQuery
 } = require('../../utils/queries');
 const { ROLES } = require('../../constants');
-
-// const storage = multer.memoryStorage();
-// const upload = multer({ storage });
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, '/tmp/images');
-  },
-  filename: function (req, file, cb) {
-    const imageExtension = file.originalname.split('.').pop();
-    const uniqueSuffix =
-      Date.now().toString() +
-      '-' +
-      Math.round(Math.random() * 1e9) +
-      '.' +
-      imageExtension;
-    cb(null, file.fieldname + '-' + uniqueSuffix);
-  }
-});
-const upload = multer({ storage: storage });
 
 // fetch product slug api
 router.get('/item/:slug', async (req, res) => {
@@ -196,7 +177,7 @@ router.post(
   '/add',
   auth,
   role.check(ROLES.Admin, ROLES.Merchant),
-  upload.single('image'),
+  multer({ storage: multerStorage }).single('image'),
   async (req, res) => {
     try {
       const sku = req.body.sku;
@@ -233,8 +214,10 @@ router.post(
         return res.status(400).json({ error: 'This sku is already in use.' });
       }
 
-      // const { imageUrl, imageKey } = await s3Upload(image);
-
+      const imageUrl =
+        req.protocol + '://' + req.get('host') + '/images/' + req.file.filename;
+      const imageKey =
+        req.protocol + '://' + req.get('host') + '/images/' + req.file.filename;
       const product = new Product({
         sku,
         name,
