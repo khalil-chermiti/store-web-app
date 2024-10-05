@@ -7,9 +7,11 @@
 import React from 'react';
 
 import Button from '../../Common/Button';
+import { useHistory } from "react-router-dom";
 
 const Checkout = props => {
-  const { authenticated, handleShopping, handleCheckout, placeOrder } = props;
+  const { authenticated, handleShopping, handleCheckout, placeOrder, toggleCart } = props;
+  const history = useHistory()
 
   return (
     <div className='easy-checkout'>
@@ -23,18 +25,32 @@ const Checkout = props => {
           <Button
             variant='primary'
             text='Passer la commande'
-            onClick={() => placeOrder()}
+            onClick={() =>
+              // placeOrder()
+              history.push("/order/command")
+
+            }
           />
         ) : (
+          // <Button
+          //   variant='primary'
+          //   text='Proceed To Checkout'
+          //   onClick={() => handleCheckout()}
+          // />
           <Button
             variant='primary'
-            text='Proceed To Checkout'
-            onClick={() => handleCheckout()}
+            text='Passer la commande'
+            onClick={() =>
+              // placeOrder()
+              history.push("/order/command")
+            }
           />
         )}
       </div>
     </div>
-  );
+  )
+
+
 };
 
 export default Checkout;

@@ -192,15 +192,16 @@ export const updateOrderItemStatus = (itemId, status) => {
   };
 };
 
-export const addOrder = () => {
+export const addOrder = (customerInfo) => {
   return async (dispatch, getState) => {
     try {
+
       const cartId = localStorage.getItem('cart_id');
+
       const total = getState().cart.cartTotal;
 
 
-      const response = await axios.get(`${API_URL}/address`);
-      console.log("the res is : ", response);
+      // const response = await axios.get(`${API_URL}/address`);
 
       // FIXME : we need to check if the user has an address or not
       // if he has an address we add order else we redirect him
@@ -209,7 +210,8 @@ export const addOrder = () => {
       if (cartId) {
         const response = await axios.post(`${API_URL}/order/add`, {
           cartId,
-          total
+          total,
+          customerInfo
         });
 
         dispatch(push(`/order/success/${response.data.order._id}`));
@@ -221,15 +223,19 @@ export const addOrder = () => {
   };
 };
 
-export const placeOrder = () => {
+
+
+
+export const placeOrder = (customerInfo) => {
+
   return (dispatch, getState) => {
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
 
     const cartItems = getState().cart.cartItems;
 
-    if (token && cartItems.length > 0) {
+    if (cartItems.length > 0) { //    if (token && cartItems.length > 0) {
       Promise.all([dispatch(getCartId())]).then(() => {
-        dispatch(addOrder());
+        dispatch(addOrder(customerInfo));
       });
     }
 
