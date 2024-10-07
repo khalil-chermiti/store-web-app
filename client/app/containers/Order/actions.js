@@ -224,7 +224,12 @@ export const addOrder = (customerInfo) => {
 };
 
 
-
+export const initPlaceOrder = () => {
+  return (dispatch, _) => {
+    dispatch(toggleCart());
+    dispatch(push(`/order/command`));
+  }
+}
 
 export const placeOrder = (customerInfo) => {
 
@@ -238,8 +243,6 @@ export const placeOrder = (customerInfo) => {
         dispatch(addOrder(customerInfo));
       });
     }
-
-    dispatch(toggleCart());
   };
 };
 

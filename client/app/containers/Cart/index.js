@@ -26,7 +26,8 @@ class Cart extends React.PureComponent {
       handleCheckout,
       handleRemoveFromCart,
       placeOrder,
-      authenticated
+      authenticated,
+      initPlaceOrder
     } = this.props;
 
     return (
@@ -64,6 +65,7 @@ class Cart extends React.PureComponent {
               handleCheckout={handleCheckout}
               placeOrder={placeOrder}
               authenticated={authenticated}
+              initPlaceOrder={initPlaceOrder}
             />
           </div>
         )}

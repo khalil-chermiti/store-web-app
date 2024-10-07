@@ -15,6 +15,34 @@ const OrderSchema = new Schema({
     type: Number,
     default: 0
   },
+  address: {
+    type: String,
+    default: ''
+  },
+  city: {
+    type: String,
+    default: ''
+  },
+  phoneNumber: {
+    type: String,
+    default: ''
+  },
+  zipCode: {
+    type: String,
+    default: ''
+  },
+  fullName: {
+    type: String,
+    default: ''
+  },
+  email: {
+    type: String,
+    default: ''
+  },
+  paymentMethod: {
+    type: String,
+    default: ''
+  },
   updated: Date,
   created: {
     type: Date,

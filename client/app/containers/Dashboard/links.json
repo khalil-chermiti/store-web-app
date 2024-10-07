@@ -1,49 +1,44 @@
 {
   "ROLE ADMIN": [
-    { "to": "", "name": "Account Details", "prefix": "/dashboard" },
+    { "to": "", "name": "Détails du compte", "prefix": "/dashboard" },
     {
       "to": "/security",
-      "name": "Account Security",
+      "name": "Sécurité du compte",
       "prefix": "/dashboard",
       "provider": ["Email"]
     },
-    { "to": "/address", "name": "Address", "prefix": "/dashboard" },
-    { "to": "/product", "name": "Products", "prefix": "/dashboard" },
-    { "to": "/category", "name": "Categories", "prefix": "/dashboard" },
-    { "to": "/brand", "name": "Brand", "prefix": "/dashboard" },
-    { "to": "/users", "name": "Users", "prefix": "/dashboard" },
-    { "to": "/merchant", "name": "Merchants", "prefix": "/dashboard" },
-    { "to": "/orders", "name": "Orders", "prefix": "/dashboard" },
-    { "to": "/review", "name": "Reviews", "prefix": "/dashboard" },
-    { "to": "/wishlist", "name": "WishList", "prefix": "/dashboard" },
-    { "to": "/support", "name": "Support" }
+    { "to": "/product", "name": "Produits", "prefix": "/dashboard" },
+    { "to": "/category", "name": "Catégories", "prefix": "/dashboard" },
+    { "to": "/brand", "name": "Marque", "prefix": "/dashboard" },
+    { "to": "/users", "name": "Utilisateurs", "prefix": "/dashboard" },
+    { "to": "/merchant", "name": "Commerçants", "prefix": "/dashboard" },
+    { "to": "/orders", "name": "Commandes", "prefix": "/dashboard" },
+    { "to": "/review", "name": "Avis", "prefix": "/dashboard" },
+    { "to": "/wishlist", "name": "Liste de souhaits", "prefix": "/dashboard" }
   ],
   "ROLE MERCHANT": [
-    { "to": "", "name": "Account Details", "prefix": "/dashboard" },
+    { "to": "", "name": "Détails du compte", "prefix": "/dashboard" },
     {
       "to": "/security",
-      "name": "Account Security",
+      "name": "Sécurité du compte",
       "prefix": "/dashboard",
       "provider": ["Email"]
     },
-    { "to": "/address", "name": "Address", "prefix": "/dashboard" },
-    { "to": "/brand", "name": "Brand", "prefix": "/dashboard" },
-    { "to": "/product", "name": "Products", "prefix": "/dashboard" },
-    { "to": "/orders", "name": "Orders", "prefix": "/dashboard" },
-    { "to": "/wishlist", "name": "WishList", "prefix": "/dashboard" },
-    { "to": "/support", "name": "Support" }
+    { "to": "/address", "name": "Adresse", "prefix": "/dashboard" },
+    { "to": "/brand", "name": "Marque", "prefix": "/dashboard" },
+    { "to": "/product", "name": "Produits", "prefix": "/dashboard" },
+    { "to": "/orders", "name": "Commandes", "prefix": "/dashboard" },
+    { "to": "/wishlist", "name": "Liste de souhaits", "prefix": "/dashboard" }
   ],
   "ROLE MEMBER": [
-    { "to": "", "name": "Account Details", "prefix": "/dashboard" },
+    { "to": "", "name": "Détails du compte", "prefix": "/dashboard" },
     {
       "to": "/security",
-      "name": "Account Security",
+      "name": "Sécurité du compte",
       "prefix": "/dashboard",
       "provider": ["Email"]
     },
-    { "to": "/address", "name": "Address", "prefix": "/dashboard" },
-    { "to": "/orders", "name": "Orders", "prefix": "/dashboard" },
-    { "to": "/wishlist", "name": "WishList", "prefix": "/dashboard" },
-    { "to": "/support", "name": "Support" }
+    { "to": "/orders", "name": "Commandes", "prefix": "/dashboard" },
+    { "to": "/wishlist", "name": "Liste de souhaits", "prefix": "/dashboard" }
   ]
 }
