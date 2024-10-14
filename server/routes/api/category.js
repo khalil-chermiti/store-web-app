@@ -89,6 +89,23 @@ router.get('/list', async (req, res) => {
   }
 });
 
+router.get('/menu', async (req, res) => {
+  try {
+    const categories = await CategoryMenuItem.find({ isActive: true }).populate(
+      {
+        path: 'categories'
+      }
+    );
+    res.status(200).json({
+      categories
+    });
+  } catch (error) {
+    res.status(400).json({
+      error: 'Your request could not be processed. Please try again.'
+    });
+  }
+});
+
 // fetch store categories api
 router.get('/menu/list', async (req, res) => {
   try {

@@ -8,9 +8,6 @@ const { apiURL } = keys.app;
 
 const api = `/${apiURL}`;
 
-// api routes
-router.use('/api/tmp/images', express.static('/tmp/images'));
-
 // render react app
 router.use(express.static(path.join(__dirname, '..', '..', 'client', 'dist')));
 router.get(

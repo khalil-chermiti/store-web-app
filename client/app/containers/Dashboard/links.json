@@ -9,6 +9,11 @@
     },
     { "to": "/product", "name": "Produits", "prefix": "/dashboard" },
     { "to": "/category", "name": "Catégories", "prefix": "/dashboard" },
+    {
+      "to": "/menu",
+      "name": "Menu",
+      "prefix": "/dashboard"
+    },
     { "to": "/brand", "name": "Marque", "prefix": "/dashboard" },
     { "to": "/users", "name": "Utilisateurs", "prefix": "/dashboard" },
     { "to": "/merchant", "name": "Commerçants", "prefix": "/dashboard" },

@@ -14,7 +14,14 @@ const { setupDB, createAdmin } = require('./utils/db');
 const { port } = keys;
 const app = express();
 
-app.use("/images", express.static(path.join('utils/images')))
+// FIXME: Define images endpoint
+app.use('/apiutils/images', express.static(path.join('utils/images')));
+app.use('/images', express.static(path.join('utils/images')));
+app.use(
+  '/api/tmp/images',
+  express.static(path.join(__dirname, '..', 'utils', 'images'))
+);
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(
@@ -38,4 +45,4 @@ const server = app.listen(port, () => {
   );
 });
 
-socket(server);
+// socket(server);
