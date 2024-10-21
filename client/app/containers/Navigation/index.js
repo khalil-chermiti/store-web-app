@@ -150,11 +150,11 @@ class Navigation extends React.PureComponent {
               </Col> */}
               <Col md='6' className='text-center d-none d-md-block'>
                 <i className='fa fa-phone' />
-                <span>Telephone: 951-999-9999</span>
+                <span>Telephone: 58 000 458 🇹🇳</span>
               </Col>
               <Col xs='12' className='text-center d-block d-md-none'>
                 <i className='fa fa-phone' />
-                <span> Telephone: 951-999-9999</span>
+                <span>Telephone: 58 000 458 🇹🇳</span>
               </Col>
             </Row>
           </Container>
@@ -162,10 +162,10 @@ class Navigation extends React.PureComponent {
         <Container>
           <Row className='align-items-center top-header'>
             <Col
-              xs={{ size: 12, order: 1 }}
-              sm={{ size: 12, order: 1 }}
-              md={{ size: 3, order: 1 }}
-              lg={{ size: 3, order: 1 }}
+              xs={{ size: 13, order: 1 }}
+              sm={{ size: 13, order: 1 }}
+              md={{ size: 4, order: 1 }}
+              lg={{ size: 4, order: 1 }}
               className='pr-0'
             >
               <div className='brand'>
@@ -180,15 +180,16 @@ class Navigation extends React.PureComponent {
                   />
                 )}
                 <Link to='/'>
-                  <h1 className='logo'>MAISON D'ALGUES🌿</h1>
+                  <h1 className='logo'>MAISON DES ALGUES🌿 </h1>
+                  <h1></h1>
                 </Link>
               </div>
             </Col>
             <Col
               xs={{ size: 12, order: 4 }}
               sm={{ size: 12, order: 4 }}
-              md={{ size: 12, order: 4 }}
-              lg={{ size: 5, order: 2 }}
+              md={{ size: 10, order: 4 }}
+              lg={{ size: 3, order: 2 }}
               className='pt-2 pt-lg-0'
             >
               <Autosuggest

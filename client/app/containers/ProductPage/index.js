@@ -100,7 +100,12 @@ class ProductPage extends React.PureComponent {
                           </Link>
                         </p>
                       )}
-                      <p className='item-desc'>{product.description}</p>
+                      <p
+                        className='item-desc'
+                        dangerouslySetInnerHTML={{
+                          __html: product.description
+                        }}
+                      ></p>
                       <p className='price'>{product.price} DT</p>
                     </div>
                     <div className='item-customize'>

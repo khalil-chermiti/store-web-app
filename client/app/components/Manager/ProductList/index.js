@@ -29,7 +29,19 @@ const ProductList = props => {
           />
           <div className='d-flex flex-column justify-content-center px-3 text-truncate'>
             <h4 className='text-truncate'>{product.name}</h4>
-            <p className='mb-2 text-truncate'>{product.description}</p>
+            <div className='ql-snow'>
+              <p
+                style={{
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  maxHeight: '3.6em',
+                  lineHeight: '1.2em'
+                }}
+                className='mb-2 text-truncate ql-editor'
+                dangerouslySetInnerHTML={{ __html: product.description }}
+              />
+            </div>
           </div>
         </Link>
       ))}
