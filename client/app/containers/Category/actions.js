@@ -92,7 +92,6 @@ export const fetchStoreCategories = () => {
   return async (dispatch, getState) => {
     try {
       const response = await axios.get(`${API_URL}/category/menu`);
-      console.log('fetched this bomb : ', response);
 
       dispatch({
         type: FETCH_STORE_CATEGORIES,

@@ -3,6 +3,7 @@ const router = express.Router();
 
 // Bring in Models & Helpers
 const Wishlist = require('../../models/wishlist');
+const Product = require('../../models/product');
 const auth = require('../../middleware/auth');
 
 router.post('/', auth, async (req, res) => {
@@ -48,23 +49,24 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
-// fetch wishlist api
-router.get('/', auth, async (req, res) => {
+// FIXME
+// fetch wishlist api Test
+router.post('/list', async (req, res) => {
   try {
-    const user = req.user._id;
+    const productIds = req.body.productIds;
 
-    const wishlist = await Wishlist.find({ user, isLiked: true })
+    const products = await Product.find({ _id: { $in: productIds } })
       .populate({
         path: 'product',
         select: 'name slug price imageUrl'
       })
       .sort('-updated');
 
-    res.status(200).json({
-      wishlist
+    return res.status(200).json({
+      wishlist: products
     });
   } catch (error) {
-    res.status(400).json({
+    return res.status(400).json({
       error: 'Your request could not be processed. Please try again.'
     });
   }

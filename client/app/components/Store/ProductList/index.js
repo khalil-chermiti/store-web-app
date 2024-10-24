@@ -14,6 +14,16 @@ import Button from '../../Common/Button';
 const ProductList = props => {
   const { products, updateWishlist, authenticated } = props;
 
+  function getWishlist() {
+    return JSON.parse(localStorage.getItem('wishlist')) || [];
+  }
+
+  function isLiked(id) {
+    return getWishlist().findIndex(el => el.toString() === id.toString()) != -1
+      ? true
+      : false;
+  }
+
   return (
     <div className='product-list'>
       {products.map((product, index) => (
@@ -23,7 +33,7 @@ const ProductList = props => {
               <div className='add-wishlist-box'>
                 <AddToWishList
                   id={product._id}
-                  liked={product?.isLiked ?? false}
+                  liked={isLiked(product._id)}
                   enabled={authenticated}
                   updateWishlist={updateWishlist}
                   authenticated={authenticated}
