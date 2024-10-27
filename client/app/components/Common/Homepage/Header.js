@@ -1,8 +1,9 @@
 import React from 'react';
-import { Button, Jumbotron } from 'reactstrap';
+import { Jumbotron } from 'reactstrap';
 
 import backgroundImage from '../../../../public/images/headerJumbo.jpg';
 import { NavLink } from 'react-router-dom';
+import Button from '../Button';
 
 const Header = () => {
   const jumbotronStyle = {
@@ -17,7 +18,7 @@ const Header = () => {
     alignItems: 'center',
     textAlign: 'center',
     padding: '20px',
-    position: 'relative' // For absolute positioning of overlay
+    position: 'relative'
   };
 
   const overlayStyle = {
@@ -26,21 +27,38 @@ const Header = () => {
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent black
-    zIndex: 0 // Ensure it’s behind the text and button
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    zIndex: 0
+  };
+
+  const titleStyle = {
+    color: 'white',
+    fontSize: '3rem',
+    textShadow: '2px 2px 2px rgba(0, 0, 0, 0.2)',
+    position: 'relative',
+    zIndex: 1,
+    maxWidth: '90%', // Keeps text within the image
+    lineHeight: '1.2' // Adjusts spacing between lines for readability
+  };
+
+  const subtitleStyle = {
+    fontSize: '1.5rem',
+    color: 'white',
+    textShadow: '1px 1px 3px rgba(0, 0, 0, 0.5)',
+    position: 'relative',
+    zIndex: 1,
+    maxWidth: '90%',
+    lineHeight: '1.4'
   };
 
   return (
     <Jumbotron style={jumbotronStyle} className='text-center mb-5'>
-      <div style={overlayStyle} /> {/* Overlay for better text visibility */}
+      <div style={overlayStyle} />
       <p
         className='display-4'
         style={{
-          color: 'white',
-          fontSize: '3rem',
-          textShadow: '2px 2px 2px rgba(0, 0, 0, 0.2)',
-          position: 'relative',
-          zIndex: 1
+          ...titleStyle,
+          fontSize: window.innerWidth < 768 ? '2rem' : '3rem' // Adjust font size for mobile
         }}
       >
         Bienvenue dans notre Parapharmacie
@@ -48,24 +66,24 @@ const Header = () => {
       <p
         className='lead'
         style={{
-          fontSize: '1.5rem',
-          color: 'white',
-          textShadow: '1px 1px 3px rgba(0, 0, 0, 0.5)',
-          position: 'relative',
-          zIndex: 1
+          ...subtitleStyle,
+          fontSize: window.innerWidth < 768 ? '1rem' : '1.5rem' // Adjust font size for mobile
         }}
       >
         Votre santé est notre priorité. Découvrez une gamme de produits pour
         votre bien-être.
       </p>
-      <Button
-        color='success'
-        style={{ position: 'relative', zIndex: 1, color: 'white' }}
-      >
-        <NavLink to='/shop' style={{ color: 'white' }}>
-          Visiter la Boutique
-        </NavLink>
-      </Button>
+
+      <NavLink to='/shop' style={{ color: 'inherit', textDecoration: 'none' }}>
+        <Button
+          variant='primary'
+          color='success'
+          style={{ position: 'relative', zIndex: 1 }}
+          text='Visiter notre botique'
+        >
+          {' '}
+        </Button>
+      </NavLink>
     </Jumbotron>
   );
 };

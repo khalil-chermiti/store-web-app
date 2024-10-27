@@ -28,7 +28,7 @@ export const NavigationGroup = ({ group, handleCategoryClick }) => {
           display: toggle ? 'block' : 'none'
         }}
       >
-        {group.categories.map((sub, index) => (
+        {group.categories?.map((sub, index) => (
           <NavigationItem
             key={index}
             slug={sub.slug}
