@@ -49,7 +49,7 @@ class Login extends React.PureComponent {
           <Row>
             <Col
               xs={{ size: 12, order: 2 }}
-              md={{ size: '6', order: 1 }}
+              md={{ size: '12', order: 1 }}
               className='p-0'
             >
               <Col xs='12' md='12'>
@@ -79,13 +79,13 @@ class Login extends React.PureComponent {
                 />
               </Col>
             </Col>
-            <Col
+            {/* <Col
               xs={{ size: 12, order: 1 }}
               md={{ size: '6', order: 2 }}
               className='mb-2 mb-md-0'
             >
               <SignupProvider />
-            </Col>
+            </Col> */}
           </Row>
           <hr />
           <div className='d-flex flex-column flex-md-row align-items-md-center justify-content-between'>
@@ -96,12 +96,12 @@ class Login extends React.PureComponent {
                 text='Login'
                 disabled={isSubmitting}
               />
-              <Button
+              {/* <Button
                 text='Create an account'
                 variant='link'
                 className='ml-md-3'
                 onClick={registerLink}
-              />
+              /> */}
             </div>
             <Link
               className='redirect-link forgot-password-link'

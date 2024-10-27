@@ -34,6 +34,7 @@ import { BarsIcon } from '../../components/Common/Icon';
 import MiniBrand from '../../components/Store//MiniBrand';
 import Menu from '../NavigationMenu';
 import Cart from '../Cart';
+import { ROLES } from '../../constants';
 
 class Navigation extends React.PureComponent {
   componentDidMount() {
@@ -180,8 +181,7 @@ class Navigation extends React.PureComponent {
                   />
                 )}
                 <Link to='/'>
-                  <h1 className='logo'>MAISON DES ALGUES🌿 </h1>
-                  <h1></h1>
+                  <h1 className='logo'>MAISON DES ALGUES 🌿</h1>
                 </Link>
               </div>
             </Col>
@@ -276,7 +276,8 @@ class Navigation extends React.PureComponent {
                       Wishlist
                     </NavLink>
                   </NavItem>
-                  {/* {authenticated ? (
+
+                  {authenticated && user.role === ROLES.Admin && (
                     <UncontrolledDropdown nav inNavbar>
                       <DropdownToggle nav>
                         {user.firstName ? user.firstName : 'Welcome'}
@@ -291,22 +292,7 @@ class Navigation extends React.PureComponent {
                         <DropdownItem onClick={signOut}>Sign Out</DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
-                  ) : (
-                    <UncontrolledDropdown nav inNavbar>
-                      <DropdownToggle nav>
-                        Bienvenue!
-                        <span className='fa fa-chevron-down dropdown-caret'></span>
-                      </DropdownToggle>
-                      <DropdownMenu right>
-                        <DropdownItem onClick={() => history.push('/login')}>
-                          Login
-                        </DropdownItem>
-                        <DropdownItem onClick={() => history.push('/register')}>
-                          Sign Up
-                        </DropdownItem>
-                      </DropdownMenu>
-                    </UncontrolledDropdown>
-                  )} */}
+                  )}
                 </Nav>
               </Navbar>
             </Col>
