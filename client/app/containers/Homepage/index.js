@@ -13,12 +13,15 @@ import actions from '../../actions';
 import banners from './banners.json';
 import CarouselSlider from '../../components/Common/CarouselSlider';
 import { responsiveOneItemCarousel } from '../../components/Common/CarouselSlider/utils';
+import Header from '../../components/Common/Homepage/Header';
+import AboutUs from '../../components/Common/Homepage/AboutUs';
 
 class Homepage extends React.PureComponent {
   render() {
     return (
       <div className='homepage'>
-        <Row className='flex-row'>
+        <Header />
+        <Row className='flex-row my-5'>
           <Col xs='12' lg='6' className='order-lg-2 mb-3 px-3 px-md-2'>
             <div className='home-carousel'>
               <CarouselSlider
@@ -48,6 +51,7 @@ class Homepage extends React.PureComponent {
             </div>
           </Col>
         </Row>
+        <AboutUs />
       </div>
     );
   }

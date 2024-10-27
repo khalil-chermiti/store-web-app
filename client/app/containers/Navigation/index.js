@@ -34,6 +34,7 @@ import { BarsIcon } from '../../components/Common/Icon';
 import MiniBrand from '../../components/Store//MiniBrand';
 import Menu from '../NavigationMenu';
 import Cart from '../Cart';
+import { ROLES } from '../../constants';
 
 class Navigation extends React.PureComponent {
   componentDidMount() {
@@ -150,11 +151,11 @@ class Navigation extends React.PureComponent {
               </Col> */}
               <Col md='6' className='text-center d-none d-md-block'>
                 <i className='fa fa-phone' />
-                <span>Telephone: 951-999-9999</span>
+                <span>Telephone: 58 000 458 🇹🇳</span>
               </Col>
               <Col xs='12' className='text-center d-block d-md-none'>
                 <i className='fa fa-phone' />
-                <span> Telephone: 951-999-9999</span>
+                <span>Telephone: 58 000 458 🇹🇳</span>
               </Col>
             </Row>
           </Container>
@@ -162,10 +163,10 @@ class Navigation extends React.PureComponent {
         <Container>
           <Row className='align-items-center top-header'>
             <Col
-              xs={{ size: 12, order: 1 }}
-              sm={{ size: 12, order: 1 }}
-              md={{ size: 3, order: 1 }}
-              lg={{ size: 3, order: 1 }}
+              xs={{ size: 13, order: 1 }}
+              sm={{ size: 13, order: 1 }}
+              md={{ size: 4, order: 1 }}
+              lg={{ size: 4, order: 1 }}
               className='pr-0'
             >
               <div className='brand'>
@@ -180,15 +181,15 @@ class Navigation extends React.PureComponent {
                   />
                 )}
                 <Link to='/'>
-                  <h1 className='logo'>MAISON D'ALGUES🌿</h1>
+                  <h1 className='logo'>MAISON DES ALGUES 🌿</h1>
                 </Link>
               </div>
             </Col>
             <Col
               xs={{ size: 12, order: 4 }}
               sm={{ size: 12, order: 4 }}
-              md={{ size: 12, order: 4 }}
-              lg={{ size: 5, order: 2 }}
+              md={{ size: 10, order: 4 }}
+              lg={{ size: 3, order: 2 }}
               className='pt-2 pt-lg-0'
             >
               <Autosuggest
@@ -265,7 +266,18 @@ class Navigation extends React.PureComponent {
                       Boutique
                     </NavLink>
                   </NavItem>
-                  {authenticated ? (
+
+                  <NavItem>
+                    <NavLink
+                      tag={ActiveLink}
+                      to='/wishlist'
+                      activeClassName='active'
+                    >
+                      Wishlist
+                    </NavLink>
+                  </NavItem>
+
+                  {authenticated && user.role === ROLES.Admin && (
                     <UncontrolledDropdown nav inNavbar>
                       <DropdownToggle nav>
                         {user.firstName ? user.firstName : 'Welcome'}
@@ -278,21 +290,6 @@ class Navigation extends React.PureComponent {
                           Dashboard
                         </DropdownItem>
                         <DropdownItem onClick={signOut}>Sign Out</DropdownItem>
-                      </DropdownMenu>
-                    </UncontrolledDropdown>
-                  ) : (
-                    <UncontrolledDropdown nav inNavbar>
-                      <DropdownToggle nav>
-                        Bienvenue!
-                        <span className='fa fa-chevron-down dropdown-caret'></span>
-                      </DropdownToggle>
-                      <DropdownMenu right>
-                        <DropdownItem onClick={() => history.push('/login')}>
-                          Login
-                        </DropdownItem>
-                        <DropdownItem onClick={() => history.push('/register')}>
-                          Sign Up
-                        </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
                   )}

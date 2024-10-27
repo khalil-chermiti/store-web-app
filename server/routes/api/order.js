@@ -11,17 +11,28 @@ const mailgun = require('../../services/mailgun');
 const store = require('../../utils/store');
 const { ROLES, CART_ITEM_STATUS } = require('../../constants');
 
-router.post('/add', async (req, res) => { //router.post('/add', auth, async (req, res) => {
+router.post('/add', async (req, res) => {
+  //router.post('/add', auth, async (req, res) => {
   try {
     const cart = req.body.cartId;
     const total = req.body.total;
-    const user = req.user._id;
+    // const user = req.user._id;
+
+    const customerInfo = req.body.customerInfo;
+    console.log(customerInfo);
 
     const order = new Order({
       cart,
-      user,
+      // user,
       total,
-      customerInfo
+      // customerInfo: req.body.customerInfo
+      address: customerInfo.address,
+      city: customerInfo.city,
+      phoneNumber: customerInfo.phoneNumber,
+      zipCode: customerInfo.zipCode,
+      fullName: customerInfo.fullName,
+      email: customerInfo.email,
+      paymentMethod: customerInfo.paymentMethod
     });
 
     const orderDoc = await order.save();
@@ -41,7 +52,7 @@ router.post('/add', async (req, res) => { //router.post('/add', auth, async (req
       products: cartDoc.products
     };
 
-    await mailgun.sendEmail(order.user.email, 'order-confirmation', newOrder);
+    // await mailgun.sendEmail(order.user.email, 'order-confirmation', newOrder);
 
     res.status(200).json({
       success: true,
@@ -49,6 +60,8 @@ router.post('/add', async (req, res) => { //router.post('/add', auth, async (req
       order: { _id: orderDoc._id }
     });
   } catch (error) {
+    console.log(error);
+
     res.status(400).json({
       error: 'Your request could not be processed. Please try again.'
     });
@@ -240,7 +253,16 @@ router.get('/:orderId', auth, async (req, res) => {
       created: orderDoc.created,
       totalTax: 0,
       products: orderDoc?.cart?.products,
-      cartId: orderDoc.cart._id
+      cartId: orderDoc.cart._id,
+      shippingFee: 7,
+
+      address: orderDoc.address,
+      city: orderDoc.city,
+      phoneNumber: orderDoc.phoneNumber,
+      zipCode: orderDoc.zipCode,
+      fullName: orderDoc.fullName,
+      email: orderDoc.email,
+      paymentMethod: orderDoc.paymentMethod
     };
 
     order = store.caculateTaxAmount(order);
@@ -313,8 +335,9 @@ router.put('/status/item/:itemId', auth, async (req, res) => {
         return res.status(200).json({
           success: true,
           orderCancelled: true,
-          message: `${req.user.role === ROLES.Admin ? 'Order' : 'Your order'
-            } has been cancelled successfully`
+          message: `${
+            req.user.role === ROLES.Admin ? 'Order' : 'Your order'
+          } has been cancelled successfully`
         });
       }
 

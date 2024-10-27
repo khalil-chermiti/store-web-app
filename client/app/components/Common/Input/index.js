@@ -6,7 +6,8 @@
 
 import React from 'react';
 import ReactStars from 'react-rating-stars-component';
-
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 const Input = props => {
   const {
     autoComplete,
@@ -27,7 +28,9 @@ const Input = props => {
   } = props;
 
   const _onChange = e => {
-    if (e.target.name == 'image') {
+    if (type === 'ReactQuill') {
+      onInputChange(name, e);
+    } else if (e.target.name === 'image') {
       onInputChange(e.target.name, e.target.files[0]);
     } else {
       onInputChange(e.target.name, e.target.value);
@@ -53,6 +56,40 @@ const Input = props => {
         />
         <span className='invalid-message'>{error && error[0]}</span>
       </div>
+    );
+  } else if (type === 'ReactQuill') {
+    return (
+      <ReactQuill
+        className={'textarea-text'}
+        value={value}
+        name={name}
+        onChange={e => {
+          _onChange(e);
+        }}
+        placeholder={'Product Description'}
+        modules={{
+          toolbar: [
+            [{ header: [1, 2, 3, false] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ list: 'ordered' }, { list: 'bullet' }],
+            ['link', 'image'],
+            [{ align: [] }],
+            ['clean']
+          ]
+        }}
+        formats={[
+          'header',
+          'bold',
+          'italic',
+          'underline',
+          'strike',
+          'list',
+          'bullet',
+          'link',
+          'image',
+          'align'
+        ]}
+      />
     );
   } else if (type === 'number') {
     const styles = `input-box${error ? ' invalid' : ''}`;
@@ -111,8 +148,9 @@ const Input = props => {
       </div>
     );
   } else {
-    const styles = `input-box${inlineElement ? ` inline-btn-box` : ''} ${error ? 'invalid' : ''
-      }`;
+    const styles = `input-box${inlineElement ? ` inline-btn-box` : ''} ${
+      error ? 'invalid' : ''
+    }`;
 
     return (
       <div className={styles}>

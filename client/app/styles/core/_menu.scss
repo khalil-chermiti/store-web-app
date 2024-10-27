@@ -50,13 +50,25 @@
   }
 
   .menu-title {
-    padding: 10px 0px 10px 30px;
+    padding: 10px 0px 10px 10px;
   }
 
   .menu-body {
     margin-top: 20px;
 
     .menu-list {
+      .menu-item-title {
+        color: $font-custom-color !important;
+        font-weight: $font-weight-medium;
+        text-transform: capitalize;
+        display: block;
+        padding-left: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin-bottom: 0.5rem;
+        border-left: 3px solid transparent;
+        cursor: pointer;
+      }
       .menu-item {
         a {
           color: $font-custom-color !important;

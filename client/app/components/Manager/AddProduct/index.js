@@ -67,7 +67,7 @@ const AddProduct = props => {
           </Col>
           <Col xs='12' md='12'>
             <Input
-              type={'textarea'}
+              type={'ReactQuill'}
               error={formErrors['description']}
               label={'Description'}
               name={'description'}

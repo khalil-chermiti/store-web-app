@@ -19,7 +19,14 @@ import {
   ADD_CATEGORY,
   REMOVE_CATEGORY,
   SET_CATEGORIES_LOADING,
-  RESET_CATEGORY
+  RESET_CATEGORY,
+  CATEGORY_ITEM_CHANGE,
+  ADD_CATEGORY_ITEM,
+  FETCH_STORE_CATEGORIES_ITEMS,
+  FETCH_STORE_CATEGORIES_SELECT,
+  FETCH_CATEGORY_MENU_ITEM,
+  CATEGORY_EDIT_ITEM_CHANGE,
+  REMOVE_CATEGORY_ITEM
 } from './constants';
 
 import handleError from '../../utils/error';
@@ -33,6 +40,26 @@ export const categoryChange = (name, value) => {
 
   return {
     type: CATEGORY_CHANGE,
+    payload: formData
+  };
+};
+
+export const categoryEditItemChange = (name, value) => {
+  let formData = {};
+  formData[name] = value;
+
+  return {
+    type: CATEGORY_EDIT_ITEM_CHANGE,
+    payload: formData
+  };
+};
+
+export const categoryItemChange = (name, value) => {
+  let formData = {};
+  formData[name] = value;
+
+  return {
+    type: CATEGORY_ITEM_CHANGE,
     payload: formData
   };
 };
@@ -64,10 +91,44 @@ export const resetCategory = () => {
 export const fetchStoreCategories = () => {
   return async (dispatch, getState) => {
     try {
-      const response = await axios.get(`${API_URL}/category/list`);
+      const response = await axios.get(`${API_URL}/category/menu`);
 
       dispatch({
         type: FETCH_STORE_CATEGORIES,
+        payload: response.data.categories
+      });
+    } catch (error) {
+      handleError(error, dispatch);
+    }
+  };
+};
+
+// fetch store categories api
+export const fetchStoreCategoriesSelect = () => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.get(`${API_URL}/category/list`);
+
+      const formattedCategories = formatSelectOptions(response.data.categories);
+
+      dispatch({
+        type: FETCH_STORE_CATEGORIES_SELECT,
+        payload: formattedCategories
+      });
+    } catch (error) {
+      handleError(error, dispatch);
+    }
+  };
+};
+
+// fetch store categories api
+export const fetchStoreCategoriesItems = () => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.get(`${API_URL}/category/menu/list`);
+
+      dispatch({
+        type: FETCH_STORE_CATEGORIES_ITEMS,
         payload: response.data.categories
       });
     } catch (error) {
@@ -115,13 +176,32 @@ export const fetchCategory = id => {
   };
 };
 
+export const fetchCategoryMenuItem = id => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.get(`${API_URL}/category/menu/${id}`);
+
+      response.data.category.categories = formatSelectOptions(
+        response.data.category.categories
+      );
+
+      dispatch({
+        type: FETCH_CATEGORY_MENU_ITEM,
+        payload: response.data.category
+      });
+    } catch (error) {
+      handleError(error, dispatch);
+    }
+  };
+};
+
 // add category api
 export const addCategory = () => {
   return async (dispatch, getState) => {
     try {
       const rules = {
         name: 'required',
-        description: 'required',//        description: 'required|max:200',
+        description: 'required', //        description: 'required|max:200',
         products: 'required'
       };
 
@@ -168,6 +248,41 @@ export const addCategory = () => {
   };
 };
 
+export const addCategoryItem = () => {
+  return async (dispatch, getState) => {
+    try {
+      const category = getState().category.categoryItemFormData;
+
+      const newCategory = {
+        name: category.name,
+        isActive: category.isActive,
+        categories: category.categories.map(c => c.value)
+      };
+
+      const response = await axios.post(`${API_URL}/category/menu/add`, {
+        ...newCategory
+      });
+
+      const successfulOptions = {
+        title: `${response.data.message}`,
+        position: 'tr',
+        autoDismiss: 1
+      };
+
+      if (response.data.success === true) {
+        dispatch(success(successfulOptions));
+        dispatch({
+          type: ADD_CATEGORY_ITEM,
+          payload: response.data.category
+        });
+        dispatch(resetCategory());
+        dispatch(goBack());
+      }
+    } catch (error) {
+      handleError(error, dispatch);
+    }
+  };
+};
 // update category api
 export const updateCategory = () => {
   return async (dispatch, getState) => {
@@ -175,7 +290,7 @@ export const updateCategory = () => {
       const rules = {
         name: 'required',
         slug: 'required|alpha_dash',
-        description: 'required',//        description: 'required|max:200',
+        description: 'required', //        description: 'required|max:200',
         products: 'required'
       };
 
@@ -227,6 +342,43 @@ export const updateCategory = () => {
   };
 };
 
+export const updateCategoryMenu = () => {
+  return async (dispatch, getState) => {
+    try {
+      const categoryItem = getState().category.categoryItem;
+
+      const newCategory = {
+        _id: categoryItem._id,
+        name: categoryItem.name,
+        isActive: categoryItem.isActive,
+        categories: unformatSelectOptions(categoryItem.categories)
+      };
+
+      const response = await axios.put(
+        `${API_URL}/category/menu/${categoryItem._id}`,
+        {
+          category: newCategory
+        }
+      );
+
+      const successfulOptions = {
+        title: `${response.data.message}`,
+        position: 'tr',
+        autoDismiss: 1
+      };
+
+      if (response.data.success === true) {
+        dispatch(success(successfulOptions));
+        dispatch(resetCategory());
+        dispatch(goBack());
+      }
+    } catch (error) {
+      console.log(error);
+      handleError(error, dispatch);
+    }
+  };
+};
+
 // activate category api
 export const activateCategory = (id, value) => {
   return async (dispatch, getState) => {
@@ -268,6 +420,33 @@ export const deleteCategory = id => {
         dispatch(success(successfulOptions));
         dispatch({
           type: REMOVE_CATEGORY,
+          payload: id
+        });
+        dispatch(goBack());
+      }
+    } catch (error) {
+      handleError(error, dispatch);
+    }
+  };
+};
+
+export const deleteCategoryItem = id => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.delete(
+        `${API_URL}/category/menu/delete/${id}`
+      );
+
+      const successfulOptions = {
+        title: `${response.data.message}`,
+        position: 'tr',
+        autoDismiss: 1
+      };
+
+      if (response.data.success == true) {
+        dispatch(success(successfulOptions));
+        dispatch({
+          type: REMOVE_CATEGORY_ITEM,
           payload: id
         });
         dispatch(goBack());

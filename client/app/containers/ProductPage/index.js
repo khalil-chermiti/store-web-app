@@ -56,7 +56,6 @@ class ProductPage extends React.PureComponent {
       reviewFormErrors
     } = this.props;
 
-
     return (
       <div className='product-shop'>
         {isLoading ? (
@@ -68,14 +67,14 @@ class ProductPage extends React.PureComponent {
                 <div className='position-relative'>
                   <img
                     className='item-image'
-                    src={`${product.imageUrl
-                      ? product.imageUrl
-                      : '/images/placeholder-image.png'
-                      }`}
+                    src={`${
+                      product.imageUrl
+                        ? product.imageUrl
+                        : '/images/placeholder-image.png'
+                    }`}
                   />
                   {product.inventory <= 0 && !shopFormErrors['quantity'] ? (
-                    <p className='stock out-of-stock'>
-                      Rupture de stock</p>
+                    <p className='stock out-of-stock'>Rupture de stock</p>
                   ) : (
                     <p className='stock in-stock'>Disponible</p>
                   )}
@@ -92,7 +91,7 @@ class ProductPage extends React.PureComponent {
                       <hr />
                       {product.brand && (
                         <p className='by'>
-                          Voir plus par   {' '}
+                          Voir plus par{' '}
                           <Link
                             to={`/shop/brand/${product.brand.slug}`}
                             className='default-link'
@@ -101,7 +100,12 @@ class ProductPage extends React.PureComponent {
                           </Link>
                         </p>
                       )}
-                      <p className='item-desc'>{product.description}</p>
+                      <p
+                        className='item-desc'
+                        dangerouslySetInnerHTML={{
+                          __html: product.description
+                        }}
+                      ></p>
                       <p className='price'>{product.price} DT</p>
                     </div>
                     <div className='item-customize'>
@@ -134,7 +138,7 @@ class ProductPage extends React.PureComponent {
                             product.inventory <= 0 &&
                             !shopFormErrors['quantity']
                           }
-                          text='Remove From Bag'
+                          text='retirer produit'
                           className='bag-btn'
                           icon={<BagIcon />}
                           onClick={() => handleRemoveFromCart(product)}

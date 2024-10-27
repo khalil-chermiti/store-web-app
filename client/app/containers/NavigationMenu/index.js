@@ -7,13 +7,13 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { Container } from 'reactstrap';
 
 import actions from '../../actions';
 
 import Button from '../../components/Common/Button';
 import { CloseIcon } from '../../components/Common/Icon';
+import { NavigationGroup } from './NavigationGroup';
 
 class NavigationMenu extends React.PureComponent {
   render() {
@@ -38,10 +38,10 @@ class NavigationMenu extends React.PureComponent {
         </div>
         <div className='menu-body'>
           <Container>
-            <h3 className='menu-title text-uppercase'>Nos Catégories</h3>
+            <h3 className='menu-title text-uppercase'>Nos Catégories </h3>
             <nav role='navigation'>
               <ul className='menu-list'>
-                {categories.map((link, index) => (
+                {/* {categories.map((link, index) => (
                   <li key={index} className='menu-item'>
                     <NavLink
                       onClick={handleCategoryClick}
@@ -52,7 +52,18 @@ class NavigationMenu extends React.PureComponent {
                       {link.name}
                     </NavLink>
                   </li>
-                ))}
+                ))} */}
+
+                {categories.map((cat, index) => {
+                  return (
+                    <div key={index}>
+                      <NavigationGroup
+                        group={cat}
+                        handleCategoryClick={handleCategoryClick}
+                      />
+                    </div>
+                  );
+                })}
               </ul>
             </nav>
           </Container>
