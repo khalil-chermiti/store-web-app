@@ -266,7 +266,17 @@ class Navigation extends React.PureComponent {
                       Boutique
                     </NavLink>
                   </NavItem>
-                  {authenticated ? (
+
+                  <NavItem>
+                    <NavLink
+                      tag={ActiveLink}
+                      to='/wishlist'
+                      activeClassName='active'
+                    >
+                      Wishlist
+                    </NavLink>
+                  </NavItem>
+                  {/* {authenticated ? (
                     <UncontrolledDropdown nav inNavbar>
                       <DropdownToggle nav>
                         {user.firstName ? user.firstName : 'Welcome'}
@@ -296,7 +306,7 @@ class Navigation extends React.PureComponent {
                         </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
-                  )}
+                  )} */}
                 </Nav>
               </Navbar>
             </Col>
