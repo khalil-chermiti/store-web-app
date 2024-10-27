@@ -212,34 +212,21 @@ router.get('/me', auth, async (req, res) => {
 });
 
 // fetch order api
-router.get('/:orderId', auth, async (req, res) => {
+router.get('/:orderId', async (req, res) => {
   try {
     const orderId = req.params.orderId;
 
     let orderDoc = null;
 
-    if (req.user.role === ROLES.Admin) {
-      orderDoc = await Order.findOne({ _id: orderId }).populate({
-        path: 'cart',
+    orderDoc = await Order.findOne({ _id: orderId }).populate({
+      path: 'cart',
+      populate: {
+        path: 'products.product',
         populate: {
-          path: 'products.product',
-          populate: {
-            path: 'brand'
-          }
+          path: 'brand'
         }
-      });
-    } else {
-      const user = req.user._id;
-      orderDoc = await Order.findOne({ _id: orderId, user }).populate({
-        path: 'cart',
-        populate: {
-          path: 'products.product',
-          populate: {
-            path: 'brand'
-          }
-        }
-      });
-    }
+      }
+    });
 
     if (!orderDoc || !orderDoc.cart) {
       return res.status(404).json({
@@ -271,6 +258,7 @@ router.get('/:orderId', auth, async (req, res) => {
       order
     });
   } catch (error) {
+    console.log(error);
     res.status(400).json({
       error: 'Your request could not be processed. Please try again.'
     });

@@ -166,11 +166,14 @@ export const updateOrderItemStatus = (itemId, status) => {
     try {
       const order = getState().order.order;
 
-      const response = await axios.put(`${API_URL}/order/status/item/${itemId}`, {
-        orderId: order._id,
-        cartId: order.cartId,
-        status
-      });
+      const response = await axios.put(
+        `${API_URL}/order/status/item/${itemId}`,
+        {
+          orderId: order._id,
+          cartId: order.cartId,
+          status
+        }
+      );
 
       if (response.data.orderCancelled) {
         dispatch(push(`/dashboard/orders`));
@@ -192,14 +195,12 @@ export const updateOrderItemStatus = (itemId, status) => {
   };
 };
 
-export const addOrder = (customerInfo) => {
+export const addOrder = customerInfo => {
   return async (dispatch, getState) => {
     try {
-
       const cartId = localStorage.getItem('cart_id');
 
       const total = getState().cart.cartTotal;
-
 
       // const response = await axios.get(`${API_URL}/address`);
 
@@ -223,22 +224,21 @@ export const addOrder = (customerInfo) => {
   };
 };
 
-
 export const initPlaceOrder = () => {
   return (dispatch, _) => {
     dispatch(toggleCart());
     dispatch(push(`/order/command`));
-  }
-}
+  };
+};
 
-export const placeOrder = (customerInfo) => {
-
+export const placeOrder = customerInfo => {
   return (dispatch, getState) => {
     // const token = localStorage.getItem('token');
 
     const cartItems = getState().cart.cartItems;
 
-    if (cartItems.length > 0) { //    if (token && cartItems.length > 0) {
+    if (cartItems.length > 0) {
+      //    if (token && cartItems.length > 0) {
       Promise.all([dispatch(getCartId())]).then(() => {
         dispatch(addOrder(customerInfo));
       });
