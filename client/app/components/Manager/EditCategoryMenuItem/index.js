@@ -42,7 +42,7 @@ const EditCategory = props => {
           </Col>
           <Col xs='12' md='12'>
             <SelectOption
-              label={'Select Products'}
+              label={'Select categorie'}
               multi={true}
               defaultValue={categoryItem.categories}
               options={categoriesSelect}

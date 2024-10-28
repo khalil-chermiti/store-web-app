@@ -79,7 +79,7 @@ const Header = () => {
           variant='primary'
           color='success'
           style={{ position: 'relative', zIndex: 1 }}
-          text='Visiter notre botique'
+          text='Visiter notre boutique'
         >
           {' '}
         </Button>
