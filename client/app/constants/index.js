@@ -1,4 +1,6 @@
-export const API_URL = process.env.API_URL;
+// export const API_URL = process.env.API_URL;
+
+export const API_URL = process.env.NODE_ENV === "production" ? "https://maisondesalgues.com/api" : process.env.API_URL;
 
 export const SOCKET_URL =
   window.location.host.indexOf('localhost') >= 0
