@@ -214,10 +214,13 @@ router.post(
         return res.status(400).json({ error: 'This sku is already in use.' });
       }
 
-      const imageUrl =
-        req.protocol + '://' + req.get('host') + '/images/' + req.file.filename;
-      const imageKey =
-        req.protocol + '://' + req.get('host') + '/images/' + req.file.filename;
+      console.log(req.file);
+
+      const host =
+        process.env.NODE_ENV === 'production'
+          ? 'https://maisondesaglues.com/api/'
+          : 'http://localhost:3000/api/';
+
       const product = new Product({
         sku,
         name,
@@ -227,7 +230,7 @@ router.post(
         taxable,
         isActive,
         brand,
-        imageUrl: 'http://localhost:3000/api' + image.path,
+        imageUrl: host + image.path,
         imageKey: image.path
       });
 

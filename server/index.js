@@ -25,7 +25,7 @@ app.use(
   })
 );
 
-app.use('/apiutils/images', express.static(path.join('utils/images')));
+app.use('/api/utils/images', express.static(path.join('utils/images')));
 app.use('/images', express.static(path.join('utils/images')));
 app.use(
   '/api/tmp/images',
