@@ -218,7 +218,7 @@ router.post(
 
       const host =
         process.env.NODE_ENV === 'production'
-          ? 'https://maisondesaglues.com/api/'
+          ? 'https://maisondesalgues.com/api/'
           : 'http://localhost:3000/api/';
 
       const product = new Product({
