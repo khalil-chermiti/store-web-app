@@ -8,16 +8,18 @@ const { apiURL } = keys.app;
 
 const api = `/${apiURL}`;
 
-// render react app
+// Serve static files from the React app
 router.use(express.static(path.join(__dirname, '..', '..', 'client', 'dist')));
-router.get(
-  '/',
-  express.static(
-    path.join(__dirname, '..', '..', 'client', 'dist', 'index.html')
-  )
-);
 
+// Define your API routes
 router.use(api, apiRoutes);
+
+// Serve the React app for any other routes
+router.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', '..', 'client', 'dist', 'index.html'));
+});
+
+// Handle 404 for API routes
 router.use(api, (req, res) => res.status(404).json('No API route found'));
 
 module.exports = router;

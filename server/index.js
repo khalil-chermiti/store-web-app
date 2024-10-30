@@ -14,13 +14,7 @@ const { setupDB, createAdmin } = require('./utils/db');
 const { port } = keys;
 const app = express();
 
-// FIXME: Define images endpoint
-app.use('/apiutils/images', express.static(path.join('utils/images')));
-app.use('/images', express.static(path.join('utils/images')));
-app.use(
-  '/api/tmp/images',
-  express.static(path.join(__dirname, '..', 'utils', 'images'))
-);
+app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -30,7 +24,13 @@ app.use(
     frameguard: true
   })
 );
-app.use(cors());
+
+app.use('/apiutils/images', express.static(path.join('utils/images')));
+app.use('/images', express.static(path.join('utils/images')));
+app.use(
+  '/api/tmp/images',
+  express.static(path.join(__dirname, '..', 'utils', 'images'))
+);
 
 setupDB();
 createAdmin();
