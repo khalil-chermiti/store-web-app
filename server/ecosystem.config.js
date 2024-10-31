@@ -1,6 +1,6 @@
 module.exports = {
   apps: [{
-    name: "mda",
+    name: "app1",
     script: "./index.js",
     instances: "max",
     exec_mode: "cluster",
