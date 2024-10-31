@@ -1,12 +1,11 @@
 module.exports = {
-  apps: [
-    {
-      name: "mda",
-      script: "./index.js",
-      watch: false,
-      env: {
-        "NODE_ENV": "production"
-      }
-    }
-  ]
+  apps: [{
+    name: "mda",
+    script: "./index.js",
+    instances: "max",
+    exec_mode: "cluster",
+    env: {
+      NODE_ENV: "production"
+    },
+  }]
 }
