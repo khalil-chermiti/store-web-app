@@ -23,6 +23,7 @@ import Pagination from '../../components/Common/Pagination';
 import SelectOption from '../../components/Common/SelectOption';
 import NavigationMenu from '../NavigationMenu';
 import Button from '../../components/Common/Button';
+import { Helmet } from 'react-helmet';
 
 class Shop extends React.PureComponent {
   toggleMenu() {
@@ -48,6 +49,20 @@ class Shop extends React.PureComponent {
 
     return (
       <div className='shop'>
+        <Helmet>
+          <title>
+            Maison des Algues - Boutique de Produits Bio et Parapharmacie
+          </title>
+          <meta
+            name='description'
+            content='Découvrez des produits bio et de parapharmacie enrichis en algues et huiles naturelles chez Maison des Algues.'
+          />
+          <meta
+            name='keywords'
+            content="produits bio, parapharmacie, huiles naturelles, produits à base d'algues"
+          />
+        </Helmet>
+
         <Row xs='12'>
           <Col
             xs={{ size: 12, order: 1 }}
