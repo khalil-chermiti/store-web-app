@@ -1,6 +1,5 @@
 import React from 'react';
 import { Jumbotron } from 'reactstrap';
-
 import backgroundImage from '../../../../public/images/headerJumbo.jpg';
 import { NavLink } from 'react-router-dom';
 import Button from '../Button';
@@ -37,8 +36,8 @@ const Header = () => {
     textShadow: '2px 2px 2px rgba(0, 0, 0, 0.2)',
     position: 'relative',
     zIndex: 1,
-    maxWidth: '90%', // Keeps text within the image
-    lineHeight: '1.2' // Adjusts spacing between lines for readability
+    maxWidth: '90%',
+    lineHeight: '1.2'
   };
 
   const subtitleStyle = {
@@ -61,7 +60,7 @@ const Header = () => {
           fontSize: window.innerWidth < 768 ? '2rem' : '3rem' // Adjust font size for mobile
         }}
       >
-        Bienvenue dans notre Parapharmacie
+        Bienvenue à Votre Maison des Algues
       </p>
       <p
         className='lead'
@@ -70,8 +69,9 @@ const Header = () => {
           fontSize: window.innerWidth < 768 ? '1rem' : '1.5rem' // Adjust font size for mobile
         }}
       >
-        Votre santé est notre priorité. Découvrez une gamme de produits pour
-        votre bien-être.
+        Votre santé est notre priorité. Découvrez notre sélection de produits
+        bio, soins parapharmaceutiques et médicaux enrichis en algues et huiles
+        naturelles.
       </p>
 
       <NavLink to='/shop' style={{ color: 'inherit', textDecoration: 'none' }}>
@@ -80,9 +80,7 @@ const Header = () => {
           color='success'
           style={{ position: 'relative', zIndex: 1 }}
           text='Visiter notre boutique'
-        >
-          {' '}
-        </Button>
+        />
       </NavLink>
     </Jumbotron>
   );
