@@ -70,7 +70,7 @@ const Footer = () => {
           </div> */}
         </div>
         <div className='footer-copyright'>
-          <span>© {new Date().getFullYear()} Maison d'Algues</span>
+          <span>© {new Date().getFullYear()} Maison des Algues</span>
         </div>
         <ul className='footer-social-item'>
           <li>
