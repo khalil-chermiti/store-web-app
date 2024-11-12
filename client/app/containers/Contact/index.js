@@ -1,16 +1,9 @@
-/*
- *
- * Contact
- *
- */
-
 import React from 'react';
-
 import { connect } from 'react-redux';
 import { Row, Col } from 'reactstrap';
+import { Helmet } from 'react-helmet'; // Import Helmet for SEO
 
 import actions from '../../actions';
-
 import Input from '../../components/Common/Input';
 import Button from '../../components/Common/Button';
 
@@ -26,6 +19,15 @@ class Contact extends React.PureComponent {
 
     return (
       <div className='contact'>
+        {/* Helmet for SEO */}
+        <Helmet>
+          <title>Contactez Maison des Algues</title>
+          <meta
+            name='description'
+            content="Contactez Maison des Algues pour toute demande concernant nos produits bio, parapharmacie, et soins à base d'algues et d'huiles naturelles."
+          />
+        </Helmet>
+
         <h3 className='text-uppercase'>Informations de Contact</h3>
         <hr />
         <form onSubmit={handleSubmit}>

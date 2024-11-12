@@ -30,16 +30,18 @@ const setupDB = async () => {
 
 async function createAdmin() {
   chalk.red('Creating Admin Account');
-  const userExists = await User.findOne({ email: 'admin@mail.com' });
+  const userExists = await User.findOne({
+    email: 'maisondesalgues.tn@gmail.com'
+  });
 
   if (userExists) {
-    chalk.green('Admin account already created: admin@mail.com ');
+    chalk.green('Admin account already created: maisondesalgues.tn@gmail.com');
     return;
   }
 
   const user = new User({
-    email: 'admin@mail.com',
-    password: 'adminadmin',
+    email: 'maisondesalgues.tn@gmail.com',
+    password: '123456',
     firstName: 'admin',
     lastName: 'admin',
     role: ROLES.Admin

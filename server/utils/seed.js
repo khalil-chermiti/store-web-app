@@ -27,7 +27,9 @@ const seedDB = async () => {
     if (!email || !password) throw new Error('Missing arguments');
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
-      console.log(`${chalk.yellow('!')} ${chalk.yellow('Seeding admin user...')}`);
+      console.log(
+        `${chalk.yellow('!')} ${chalk.yellow('Seeding admin user...')}`
+      );
       const user = new User({
         email,
         password,
@@ -43,7 +45,9 @@ const seedDB = async () => {
       console.log(`${chalk.green('✓')} ${chalk.green('Admin user seeded.')}`);
     } else {
       console.log(
-        `${chalk.yellow('!')} ${chalk.yellow('Admin user already exists, skipping seeding for admin user.')}`
+        `${chalk.yellow('!')} ${chalk.yellow(
+          'Admin user already exists, skipping seeding for admin user.'
+        )}`
       );
     }
 
@@ -110,24 +114,35 @@ const seedDB = async () => {
           category: categories[randomCategoryIndex]._id
         });
         await product.save();
-        await Category.updateOne({ _id: categories[randomCategoryIndex]._id }, { $push: { products: product._id } });
+        await Category.updateOne(
+          { _id: categories[randomCategoryIndex]._id },
+          { $push: { products: product._id } }
+        );
       }
-      console.log(`${chalk.green('✓')} ${chalk.green('Products seeded and associated with categories.')}`);
+      console.log(
+        `${chalk.green('✓')} ${chalk.green(
+          'Products seeded and associated with categories.'
+        )}`
+      );
     }
   } catch (error) {
-    console.log(`${chalk.red('x')} ${chalk.red('Error while seeding database')}`);
+    console.log(
+      `${chalk.red('x')} ${chalk.red('Error while seeding database')}`
+    );
     console.log(error);
     return null;
   } finally {
     await mongoose.connection.close();
-    console.log(`${chalk.blue('✓')} ${chalk.blue('Database connection closed!')}`);
+    console.log(
+      `${chalk.blue('✓')} ${chalk.blue('Database connection closed!')}`
+    );
   }
 };
 
 (async () => {
   try {
     await setupDB();
-    await seedDB();
+    // await seedDB();
   } catch (error) {
     console.error(`Error initializing database: ${error.message}`);
   }

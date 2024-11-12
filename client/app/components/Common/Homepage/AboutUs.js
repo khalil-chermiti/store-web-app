@@ -1,6 +1,7 @@
 import React from 'react';
 import AboutUsImage from '../../../../public/images/aboutusimage.jpg';
 import { Col, Row } from 'reactstrap';
+import { Helmet } from 'react-helmet'; // Import Helmet for SEO
 
 const AboutUs = () => {
   const aboutUsStyle = {
@@ -10,13 +11,23 @@ const AboutUs = () => {
 
   return (
     <div className='my-5'>
+      <Helmet>
+        <title>
+          À Propos de Maison des Algues - Produits Bio et Parapharmacie
+        </title>
+        <meta
+          name='description'
+          content="Découvrez la mission et les valeurs de Maison des Algues, une boutique spécialisée dans les produits bio, parapharmacie, et soins à base d'algues et d'huiles naturelles."
+        />
+      </Helmet>
+
       <div style={aboutUsStyle}>
-        <h2 className='text-center mb-4'>À Propos de Nous</h2>
+        <h2 className='text-center mb-4'>À Propos de Maison des Algues</h2>
         <Row>
           <Col md='6' className='mb-4'>
             <img
               src={AboutUsImage}
-              alt='À Propos de Nous'
+              alt='Maison des Algues - Bio and Parapharmacy Products with Seaweed and Oils'
               className='img-fluid'
             />
           </Col>
@@ -24,19 +35,21 @@ const AboutUs = () => {
             md='6'
             className='mb-4 d-flex flex-column justify-content-center'
           >
-            {' '}
-            {/* Added Flexbox classes */}
             <h4 className='text-start'>Notre Mission</h4>
             <p>
-              Dans notre parapharmacie, nous nous efforçons de fournir les
-              meilleurs produits de santé et de bien-être à notre communauté.
-              Notre équipe dévouée s'engage à garantir que vous ayez accès à des
-              produits sûrs et efficaces.
+              Chez <strong>Maison des Algues</strong>, notre mission est de
+              fournir des produits bio de haute qualité pour le bien-être et la
+              santé. Nous proposons une gamme de produits de parapharmacie
+              naturels, enrichis en algues et huiles essentielles, qui
+              soutiennent une vie saine et naturelle.
             </p>
             <h4 className='text-start'>Nos Valeurs</h4>
             <p>
-              Nous croyons en la qualité, la confiance et la satisfaction du
-              client. Votre santé est notre priorité.
+              Nous croyons en la pureté, la qualité, et le respect de la nature.
+              Chaque produit de <strong>Maison des Algues</strong> est
+              sélectionné pour ses bienfaits et son efficacité, offrant à notre
+              clientèle une solution saine et durable pour le bien-être
+              quotidien.
             </p>
           </Col>
         </Row>
