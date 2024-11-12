@@ -22,6 +22,9 @@ class Homepage extends React.PureComponent {
     return (
       <div className='homepage'>
         <Header />
+        <AboutUs />
+        Contactez-nous
+        <Contact />
         <Row className='flex-row my-5'>
           <Col xs='12' lg='6' className='order-lg-2 mb-3 px-3 px-md-2'>
             <div className='home-carousel'>
@@ -52,9 +55,6 @@ class Homepage extends React.PureComponent {
             </div>
           </Col>
         </Row>
-        <AboutUs />
-        Contactez-nous
-        <Contact />
       </div>
     );
   }

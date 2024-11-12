@@ -7,7 +7,7 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { Container } from 'reactstrap';
 
 import actions from '../../actions';
@@ -84,6 +84,12 @@ class Application extends React.PureComponent {
             <div className='wrapper'>
               <Switch>
                 <Route exact path='/' component={HomePage} />
+                <Route
+                  exact
+                  path='/google495c0453de57f40b'
+                  render={() => <Redirect to='/google495c0453de57f40b.html' />}
+                />
+
                 <Route path='/shop' component={Shop} />
                 <Route path='/sell' component={Sell} />
                 <Route path='/contact' component={Contact} />
