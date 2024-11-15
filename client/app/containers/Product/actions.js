@@ -35,6 +35,7 @@ import { allFieldsValidation } from '../../utils/validation';
 export const productChange = (name, value) => {
   let formData = {};
   formData[name] = value;
+
   return {
     type: PRODUCT_CHANGE,
     payload: formData
@@ -218,7 +219,7 @@ export const addProduct = () => {
       const rules = {
         sku: 'required|alpha_dash',
         name: 'required',
-        description: 'required',//description: 'required|max:200'
+        description: 'required', //description: 'required|max:200'
         quantity: 'required|numeric',
         price: 'required|numeric',
         taxable: 'required',
@@ -313,7 +314,7 @@ export const updateProduct = () => {
         name: 'required',
         sku: 'required|alpha_dash',
         slug: 'required|alpha_dash',
-        description: 'required',//        description: 'required|max:200',
+        description: 'required', //        description: 'required|max:200',
         quantity: 'required|numeric',
         price: 'required|numeric',
         taxable: 'required',
@@ -321,6 +322,8 @@ export const updateProduct = () => {
       };
 
       const product = getState().product.product;
+
+      console.log('product', product);
 
       const brand = unformatSelectOptions([product.brand]);
 
@@ -332,8 +335,22 @@ export const updateProduct = () => {
         quantity: product.quantity,
         price: product.price,
         taxable: product.taxable,
-        brand: brand != 0 ? brand : null
+        brand: brand != 0 ? brand : null,
+        image: product.image
       };
+
+      const formData = new FormData();
+      if (newProduct.image) {
+        for (const key in newProduct) {
+          if (newProduct.hasOwnProperty(key)) {
+            if (key === 'brand' && newProduct[key] === null) {
+              continue;
+            } else {
+              formData.set(key, newProduct[key]);
+            }
+          }
+        }
+      }
 
       const { isValid, errors } = allFieldsValidation(newProduct, rules, {
         'required.name': 'Name is required.',
@@ -359,9 +376,13 @@ export const updateProduct = () => {
         });
       }
 
-      const response = await axios.put(`${API_URL}/product/${product._id}`, {
-        product: newProduct
-      });
+      const response = await axios.put(
+        `${API_URL}/product/${product._id}`,
+        formData,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        }
+      );
 
       const successfulOptions = {
         title: `${response.data.message}`,

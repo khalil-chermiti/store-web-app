@@ -347,12 +347,26 @@ router.put(
   '/:id',
   auth,
   role.check(ROLES.Admin, ROLES.Merchant),
+  multer({ storage: multerStorage }).single('image'),
   async (req, res) => {
     try {
       const productId = req.params.id;
-      const update = req.body.product;
+
+      const update = {
+        name: req.body.name,
+        sku: req.body.sku,
+        slug: req.body.slug,
+        description: req.body.description,
+        quantity: req.body.quantity,
+        price: req.body.price,
+        taxable: req.body.taxable,
+        brand: req.body.brand
+      };
+
+      const image = req.file;
+
       const query = { _id: productId };
-      const { sku, slug } = req.body.product;
+      const { sku, slug } = req.body;
 
       const foundProduct = await Product.findOne({
         $or: [{ slug }, { sku }]
@@ -362,6 +376,16 @@ router.put(
         return res
           .status(400)
           .json({ error: 'Sku or slug is already in use.' });
+      }
+
+      if (image) {
+        const host =
+          process.env.NODE_ENV === 'production'
+            ? 'https://maisondesalgues.com/api/'
+            : 'http://localhost:3000/api/';
+
+        update.imageUrl = host + image.path;
+        update.imageKey = image.path;
       }
 
       await Product.findOneAndUpdate(query, update, {

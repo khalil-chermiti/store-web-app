@@ -29,7 +29,8 @@ const EditProduct = props => {
     brands,
     updateProduct,
     deleteProduct,
-    activateProduct
+    activateProduct,
+    image
   } = props;
 
   const handleSubmit = event => {
@@ -141,6 +142,21 @@ const EditProduct = props => {
               }}
             />
           </Col>
+
+          <Col xs='12' md='12'>
+            <Input
+              type={'file'}
+              error={formErrors['file']}
+              name={'image'}
+              label={'file'}
+              placeholder={'Please Upload Image'}
+              value={image}
+              onInputChange={(name, value) => {
+                productChange(name, value);
+              }}
+            />
+          </Col>
+
           {user.role === ROLES.Admin && (
             <Col xs='12' md='12'>
               <SelectOption
