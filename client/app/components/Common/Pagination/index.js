@@ -12,6 +12,7 @@ const Pagination = props => {
 
   const handlePageClick = event => {
     onPagination('pagination', event.selected + 1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
