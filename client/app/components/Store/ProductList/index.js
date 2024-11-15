@@ -19,9 +19,14 @@ const ProductList = props => {
   }
 
   function isLiked(id) {
-    return getWishlist().findIndex(el => el.toString() === id.toString()) != -1
-      ? true
-      : false;
+    const res =
+      getWishlist().findIndex(el => el.toString() === id.toString()) != -1
+        ? true
+        : false;
+
+    console.log('product with id : ' + id + 'is ', res ? 'liked' : 'not liked');
+
+    return res;
   }
 
   return (
