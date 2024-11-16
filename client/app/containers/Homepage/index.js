@@ -7,7 +7,7 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Button } from 'reactstrap';
 
 import actions from '../../actions';
 import banners from './banners.json';
@@ -16,6 +16,8 @@ import { responsiveOneItemCarousel } from '../../components/Common/CarouselSlide
 import Header from '../../components/Common/Homepage/Header';
 import AboutUs from '../../components/Common/Homepage/AboutUs';
 import Contact from '../Contact';
+import { Link } from 'react-router-dom';
+import { DixoloramaCarousel } from '../dixolorama/Dixolorama';
 
 class Homepage extends React.PureComponent {
   render() {
@@ -55,6 +57,73 @@ class Homepage extends React.PureComponent {
             </div>
           </Col>
         </Row>
+        <div
+          className='mt-5 text-center'
+          style={{
+            backgroundColor: '#eaf4e2',
+            padding: '40px',
+            borderRadius: '5px',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            marginBottom: '30px'
+          }}
+        >
+          <h4
+            style={{
+              color: '#4B6F44',
+              fontWeight: 'bold',
+              fontSize: '24px',
+              marginBottom: '20px'
+            }}
+          >
+            À propos de Diaxorama
+          </h4>
+          <p
+            style={{
+              color: '#6c757d',
+              fontSize: '16px',
+              marginBottom: '30px',
+              maxWidth: '800px',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              lineHeight: '1.6'
+            }}
+          >
+            Diaxorama est votre destination en ligne dédiée aux préparations
+            pharmaceutiques naturelles à base d'huiles essentielles. Nos
+            solutions offrent des bienfaits pour divers problèmes de santé, et
+            chaque produit est disponible à un prix accessible de moins de 10
+            DT.
+          </p>
+
+          <div
+            style={{
+              marginBottom: '20px',
+              padding: '10px',
+              borderRadius: '8px'
+            }}
+          >
+            <DixoloramaCarousel />
+          </div>
+
+          <Link
+            to='/shop/category/dixolorama-10dt'
+            style={{ textDecoration: 'none' }}
+          >
+            <Button
+              color='info'
+              style={{
+                fontWeight: 'bold',
+                fontSize: '16px',
+                padding: '12px 30px',
+                borderRadius: '5px',
+                marginTop: '1rem',
+                boxShadow: '0 3px 6px rgba(0, 0, 0, 0.2)'
+              }}
+            >
+              Produits Dixolorama
+            </Button>
+          </Link>
+        </div>
       </div>
     );
   }
