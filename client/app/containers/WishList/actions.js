@@ -43,7 +43,7 @@ export const updateWishlist = (isLiked, productId) => {
     else removeFromWishlist(productId);
 
     const successfulOptions = {
-      title: `Product was ${isLiked ? 'added' : 'removed'} added to wishlist`,
+      title: `Product was ${isLiked ? 'added to' : 'removed from'} wishlist`,
       position: 'tr',
       autoDismiss: 1
     };

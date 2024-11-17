@@ -24,7 +24,12 @@ class NavigationMenu extends React.PureComponent {
     };
 
     return (
-      <div className='navigation-menu'>
+      <div
+        className='navigation-menu'
+        style={{
+          overflowY: 'auto'
+        }}
+      >
         <div className='menu-header'>
           {isMenuOpen && (
             <Button

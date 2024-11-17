@@ -28,7 +28,9 @@ class Sell extends React.PureComponent {
     return (
       <div className='sell'>
         {isLoading && <LoadingIndicator />}
-        <h3 className='text-uppercase'>Devenez Vendeur "Maison d'algues" !</h3>
+        <h3 className='text-uppercase'>
+          Devenez Vendeur "Maison des algues" !
+        </h3>
         <hr />
         <Row>
           <Col xs='12' md='6' className='order-2 order-md-1'>
@@ -45,8 +47,10 @@ class Sell extends React.PureComponent {
             <Row>
               <Col xs='12' className='order-2 order-md-1 text-md-center mb-3'>
                 <div className='agreement-banner-text'>
-                  <h3>Voulez-vous vendre vos produits sur Maison d'Algues !</h3>
-                  <h5>Développez votre entreprise avec Maison d'Algues</h5>
+                  <h3>
+                    Voulez-vous vendre vos produits sur Maison des Algues !
+                  </h3>
+                  <h5>Développez votre entreprise avec Maison des Algues</h5>
                   <b>Postulez dès aujourd'hui</b>
                 </div>
               </Col>
