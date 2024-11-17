@@ -214,7 +214,7 @@ router.post(
         return res.status(400).json({ error: 'This sku is already in use.' });
       }
 
-      console.log(req.file);
+      console.log('the image is', req.file);
 
       const host =
         process.env.NODE_ENV === 'production'
@@ -386,6 +386,8 @@ router.put(
 
         update.imageUrl = host + image.path;
         update.imageKey = image.path;
+
+        console.log('the image is', image);
       }
 
       await Product.findOneAndUpdate(query, update, {

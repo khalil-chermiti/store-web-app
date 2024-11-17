@@ -36,16 +36,31 @@
 //   }
 // };
 
-const multer = require('multer')
+const multer = require('multer');
+
+function formatProductName(name) {
+  return name.replace(/ /g, '-').toLowerCase();
+}
+
+function getExtension(filename) {
+  return filename.split('.').pop();
+}
+
+function generateImageName(productName, fileName) {
+  return `${formatProductName(productName)}:${Date.now()}.${getExtension(
+    fileName
+  )}`;
+}
 
 exports.multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "utils/images")
+    cb(null, 'utils/images');
   },
   filename: (req, file, cb) => {
-    const name = file.originalname.toLowerCase().split(' ').join('-')
-    storageDistPath = Date.now() + "-" + name
-    cb(null, storageDistPath)
+    // const name = file.originalname.toLowerCase().split(' ').join('-');
+    // storageDistPath = Date.now() + '-' + name;
+    const productName = req.body.name || '';
+    storageDistPath = generateImageName(productName, file.originalname);
+    cb(null, storageDistPath);
   }
-})
-
+});
