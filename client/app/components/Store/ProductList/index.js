@@ -71,21 +71,6 @@ const ProductList = (props) => {
                             Par <span>{product.brand.name}</span>
                           </p>
                         )}
-                      <div className="ql-editor">
-                        <p
-                          style={{
-                            overflow: "hidden",
-                            display: "-webkit-box",
-                            WebkitBoxOrient: "vertical",
-                            WebkitLineClamp: 2,
-                            textOverflow: "ellipsis",
-                          }}
-                          className="mb-2  "
-                          // dangerouslySetInnerHTML={{
-                          //   __html: product.description,
-                          // }}
-                        />
-                      </div>
                     </div>
                   </div>
                   <div className="d-flex flex-row justify-content-between align-items-center px-4 mb-2 item-footer">
