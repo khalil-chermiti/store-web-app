@@ -67,8 +67,8 @@ class Customer extends React.PureComponent {
     return (
       <div className='order-dashboard'>
         <SubPage
-          title='Customer Orders'
-          actionTitle='My Orders'
+          title='Commandes des clients'
+          actionTitle='Mes commandes'
           handleAction={() =>
             user.role === ROLES.Admin && history.push('/dashboard/orders')
           }
@@ -95,7 +95,7 @@ class Customer extends React.PureComponent {
             </>
           )}
           {!isLoading && !displayOrders && (
-            <NotFound message='No orders found.' />
+            <NotFound message='Aucune commande trouvée' />
           )}
         </SubPage>
       </div>
