@@ -87,7 +87,6 @@ class ProductPage extends React.PureComponent {
                       <h1 className='item-name one-line-ellipsis'>
                         {product.name}
                       </h1>
-                      <p className='sku'>{product.sku}</p>
                       <hr />
                       {product.brand && (
                         <p className='by'>

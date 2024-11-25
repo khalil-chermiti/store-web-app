@@ -163,7 +163,7 @@ const AddProduct = (props) => {
           </div>
         )}
         <div className="add-product-actions">
-          <Button type="submit" text="Ajouter un Produit" />
+          <Button type="submit" text="Ajouter" />
         </div>
       </form>
     </div>

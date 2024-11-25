@@ -4,9 +4,11 @@ import { Col, Row } from 'reactstrap';
 import { Helmet } from 'react-helmet'; // Import Helmet for SEO
 
 const AboutUs = () => {
+
   const aboutUsStyle = {
     backgroundColor: 'rgba(240, 248, 255, 0.8)', // Light background with 80% opacity
-    padding: '20px' // Add padding for aesthetics
+    padding: '40px 20px', // Add padding for aesthetics
+    margin: '4rem auto', // Center the content
   };
 
   return (

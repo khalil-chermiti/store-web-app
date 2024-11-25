@@ -8,7 +8,7 @@ export const NavigationGroup = ({ group, handleCategoryClick }) => {
       <p
         className='menu-item-title'
         style={{
-          borderLeft: toggle ? '3px solid green' : '3px solid white',
+          borderLeft: toggle ? '3px solid green' : '3px solid transparent',
           userSelect: 'none',
           display: 'flex',
           alignContent: 'center',

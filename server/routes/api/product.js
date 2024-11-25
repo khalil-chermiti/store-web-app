@@ -214,8 +214,6 @@ router.post(
         return res.status(400).json({ error: "This sku is already in use." });
       }
 
-      console.log("the image is", req.file);
-
       const host =
         process.env.NODE_ENV === "production"
           ? "https://maisondesalgues.com/api/"
