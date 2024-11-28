@@ -24,8 +24,6 @@ const ProductList = (props) => {
         ? true
         : false;
 
-    console.log("product with id : " + id + "is ", res ? "liked" : "not liked");
-
     return res;
   }
 

@@ -7,7 +7,7 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import { Row, Col, Button } from "reactstrap";
+import { Row, Col } from "reactstrap";
 
 import actions from "../../actions";
 import banners from "./banners.json";
@@ -16,8 +16,13 @@ import { responsiveOneItemCarousel } from "../../components/Common/CarouselSlide
 import Header from "../../components/Common/Homepage/Header";
 import AboutUs from "../../components/Common/Homepage/AboutUs";
 import Contact from "../Contact";
-import { Link } from "react-router-dom";
-import { DixoloramaCarousel } from "../dixolorama/Dixolorama";
+import HuilesImage from "../../../public/images/huiles.jpg";
+
+// <img
+//   src={HuilesImage}
+//   alt="Vintorama produits"
+//   className="img-fluid rounded"
+// />
 
 class Homepage extends React.PureComponent {
   render() {
@@ -57,6 +62,86 @@ class Homepage extends React.PureComponent {
             </div>
           </Col>
         </Row>
+        <Row>
+          <section className="container py-5">
+            {/* Heading */}
+            <h1 className="text-center mb-4" style={{ color: "green" }}>
+              Vintorama
+            </h1>
+
+            <div className="row align-items-center">
+              {/* Image on the Left */}
+              <div className="col-md-6">
+                <CarouselSlider
+                  swipeable={true}
+                  showDots={true}
+                  infinite={true}
+                  autoPlay={false}
+                  slides={banners}
+                  responsive={responsiveOneItemCarousel}
+                >
+                  <img src={HuilesImage} />
+                  <img src={HuilesImage} />
+                  <img src={HuilesImage} />
+                </CarouselSlider>
+              </div>
+              {/* Description on the Right */}
+              <div className="col-md-6">
+                <p className="mt-3">
+                  Découvrez <strong>Vintorama</strong>, notre marque exclusive
+                  de produits naturels. Nos préparations, composées d'huiles
+                  naturelles sélectionnées avec soin par nos experts, sont
+                  conçues pour répondre à divers besoins de santé et de beauté.
+                  Elles aident à soulager des problèmes tels que :
+                </p>
+                <ul>
+                  <li>Migraine</li>
+                  <li>Chute des cheveux</li>
+                  <li>Acné</li>
+                  <li>Rides</li>
+                  <li>Et bien plus encore...</li>
+                </ul>
+                <p>
+                  Chaque produit est disponible à seulement{" "}
+                  <span style={{ color: "green", fontWeight: "bold" }}>
+                    20 DT
+                  </span>
+                  , offrant une solution naturelle et abordable pour votre
+                  bien-être.
+                </p>
+                <p>
+                  Élaborés avec le plus grand soin, nos produits garantissent
+                  une efficacité optimale tout en respectant votre santé et la
+                  nature.
+                </p>
+
+                <a
+                  href="/vintorama" // Update this to your actual products page URL
+                  style={{
+                    padding: "10px 0px",
+                    borderBottom: "1px solid green",
+                  }}
+                >
+                  <span className="text-success">
+                    Découvrez nos produits
+                    <span
+                      style={{
+                        fontSize: "1.5rem",
+                        verticalAlign: "middle",
+                        marginLeft: "5px",
+                        color: "green",
+                      }}
+                    >
+                      &#8594;
+                    </span>
+                  </span>
+                </a>
+              </div>
+            </div>
+            {/* Redirect Button */}
+            <div className="text-center mt-4"></div>
+          </section>
+        </Row>
       </div>
     );
   }
@@ -67,67 +152,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, actions)(Homepage);
-
-/* <div
-  className="mt-5 text-center"
-  style={{
-    backgroundColor: "#eaf4e2",
-    padding: "40px",
-    borderRadius: "5px",
-    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-    marginBottom: "30px",
-  }}
->
-  <h4
-    style={{
-      color: "#4B6F44",
-      fontWeight: "bold",
-      fontSize: "24px",
-      marginBottom: "20px",
-    }}
-  >
-    À propos de Diaxorama
-  </h4>
-  <p
-    style={{
-      color: "#6c757d",
-      fontSize: "16px",
-      marginBottom: "30px",
-      maxWidth: "800px",
-      marginLeft: "auto",
-      marginRight: "auto",
-      lineHeight: "1.6",
-    }}
-  >
-    Diaxorama est votre destination en ligne dédiée aux préparations
-    pharmaceutiques naturelles à base d'huiles essentielles. Nos solutions
-    offrent des bienfaits pour divers problèmes de santé, et chaque produit est
-    disponible à un prix accessible de moins de 10 DT.
-  </p>
-
-  <div
-    style={{
-      marginBottom: "20px",
-      padding: "10px",
-      borderRadius: "8px",
-    }}
-  >
-    <DixoloramaCarousel />
-  </div>
-
-  <Link to="/shop/category/dixolorama-10dt" style={{ textDecoration: "none" }}>
-    <Button
-      color="info"
-      style={{
-        fontWeight: "bold",
-        fontSize: "16px",
-        padding: "12px 30px",
-        borderRadius: "5px",
-        marginTop: "1rem",
-        boxShadow: "0 3px 6px rgba(0, 0, 0, 0.2)",
-      }}
-    >
-      Produits Dixolorama
-    </Button>
-  </Link>
-</div>; */

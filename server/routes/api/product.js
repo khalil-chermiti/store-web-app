@@ -22,6 +22,7 @@ const { ROLES } = require("../../constants");
 router.get("/item/:slug", async (req, res) => {
   try {
     const slug = req.params.slug;
+    console.log("the slug is : " + slug);
 
     const productDoc = await Product.findOne({ slug, isActive: true }).populate(
       {
@@ -29,6 +30,8 @@ router.get("/item/:slug", async (req, res) => {
         select: "name isActive slug",
       },
     );
+
+    console.log("the product is : " + productDoc);
 
     const hasNoBrand =
       productDoc?.brand === null || productDoc?.brand?.isActive === false;
@@ -91,7 +94,15 @@ router.get("/list", async (req, res) => {
     sortOrder = JSON.parse(sortOrder);
 
     const categoryFilter = category ? { category } : {};
-    const basicQuery = getStoreProductsQuery(min, max, rating);
+    let basicQuery;
+    // if we want to fetch products from vintorama we set the last parameter to true
+    if (brand?.toLowerCase() === "vintorama") {
+      basicQuery = getStoreProductsQuery(min, max, rating, true);
+    } else {
+      // if we want to fetch all products for the store we set the last parameter to false
+      // because we don't want to fetch products from vintorama
+      basicQuery = getStoreProductsQuery(min, max, rating);
+    }
 
     const userDoc = await checkAuth(req);
     const categoryDoc = await Category.findOne({
@@ -450,5 +461,21 @@ router.delete(
     }
   },
 );
+
+// fetch products with vintorama brand api
+router.get("/list/vintorama", async (req, res) => {
+  try {
+    const products = await Product.find({ brand: "6748be58fca0084ffc7275b7" });
+
+    res.status(200).json({
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({
+      error: "Your request could not be processed. Please try again.",
+    });
+  }
+});
 
 module.exports = router;
