@@ -10,7 +10,6 @@ const keys = require("./config/keys");
 const routes = require("./routes");
 const socket = require("./socket");
 const { setupDB, createAdmin } = require("./utils/db");
-const addVintoramaProducts = require("./utils/addVintoramaProducts");
 
 const { port } = keys;
 const app = express();

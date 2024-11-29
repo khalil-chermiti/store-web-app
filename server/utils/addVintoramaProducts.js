@@ -250,43 +250,59 @@ const preparations = [
 
 async function addVintoramaProducts() {
   // add product to the database sequentially
-  // for (let i = 0; i < preparations.length; i++) {
-  //   const preparation = preparations[i];
-  //   const product = new Product({
-  //     sku:
-  //       "vintorama_" +
-  //       preparation.name.toLowerCase().replace(/\s/g, "_").replace(/é|è/g, "e"),
-  //     name: "Vintorama " + preparation.name,
-  //     description: preparation.description,
-  //     price: 20,
-  //     quantity: 1,
-  //     image: preparation.image,
-  //     isActive: true,
-  //   });
-  //
-  //   try {
-  //     console.log("Adding product: " + product.name);
-  //     await product.save();
-  //     console.log("Product added: " + product.name);
-  //   } catch (err) {
-  //     console.log("error adding product: " + product.name);
-  //     console.log(err);
-  //   }
-  // }
+  for (let i = 0; i < preparations.length; i++) {
+    const preparation = preparations[i];
+    const product = new Product({
+      sku:
+        "vintorama_" +
+        preparation.name.toLowerCase().replace(/\s/g, "_").replace(/é|è/g, "e"),
+      name: "Vintorama " + preparation.name,
+      description: preparation.description,
+      price: 20,
+      quantity: 1,
+      image: preparation.image,
+      isActive: true,
+      brand: "6748be58fca0084ffc7275b7",
+    });
+
+    try {
+      console.log("Adding product: " + product.name);
+      await product.save();
+      console.log("Product added: " + product.name);
+    } catch (err) {
+      console.log("error adding product: " + product.name);
+      console.log(err);
+    }
+  }
 
   // set the brand of each product to Vintorama
   // search for product with name starting with "vintorama_"
+  // try {
+  //   const products = await Product.find({ name: /^Vintorama/ });
+  //   for (let i = 0; i < products.length; i++) {
+  //     const product = products[i];
+  //     product.brand = "6748be58fca0084ffc7275b7";
+  //     await product.save();
+  //   }
+  // } catch (err) {
+  //   console.log("error setting brand for Vintorama products");
+  //   console.log(err);
+  // }
+}
+
+const deleteProductsHavingNameVintorama = async () => {
   try {
     const products = await Product.find({ name: /^Vintorama/ });
     for (let i = 0; i < products.length; i++) {
       const product = products[i];
-      product.brand = "6748be58fca0084ffc7275b7";
-      await product.save();
+      await product.remove();
     }
   } catch (err) {
-    console.log("error setting brand for Vintorama products");
+    console.log("error deleting Vintorama products");
     console.log(err);
   }
-}
+};
 
-module.exports = addVintoramaProducts;
+module.exports = {
+  deleteProductsHavingNameVintorama,
+};

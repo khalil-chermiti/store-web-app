@@ -12,14 +12,11 @@ const Vintorama = () => {
         "http://localhost:3000/api/product/list/vintorama",
       );
       const data = await response.json();
+      console.log(data);
       setProducts(data.products);
     }
     fetchProducts();
   }, []);
-
-  useEffect(() => {
-    console.log(products);
-  }, [products]);
 
   return (
     <div className="container py-5">
@@ -43,9 +40,9 @@ const Vintorama = () => {
             <Link to={`/product/${product.slug}`}>
               <div className="card h-100">
                 {/* Product Image */}
-                {product.image ? (
+                {product.imageUrl? (
                   <img
-                    src={`http://localhost:3000/api/utils/images/dixolorama/${product.image}`}
+                    src={product.imageUrl}
                     alt={product.name}
                     className="card-img-top"
                     style={{ height: "200px", objectFit: "cover" }}
