@@ -9,7 +9,7 @@ const Vintorama = () => {
   useEffect(() => {
     async function fetchProducts() {
       const response = await fetch(
-        "http://localhost:3000/api/product/list/vintorama",
+        "https://maisondesalgues.com/api/product/list/vintorama",
       );
       const data = await response.json();
       console.log(data);
