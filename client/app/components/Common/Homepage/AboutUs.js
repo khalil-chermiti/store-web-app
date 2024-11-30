@@ -1,43 +1,44 @@
-import React from 'react';
-import AboutUsImage from '../../../../public/images/aboutusimage.jpg';
-import { Col, Row } from 'reactstrap';
-import { Helmet } from 'react-helmet'; // Import Helmet for SEO
+import React from "react";
+import AboutUsImage from "../../../../public/images/aboutusimage.jpg";
+import { Col, Row } from "reactstrap";
+import { Helmet } from "react-helmet"; // Import Helmet for SEO
 
 const AboutUs = () => {
-
   const aboutUsStyle = {
-    backgroundColor: 'rgba(240, 248, 255, 0.8)', // Light background with 80% opacity
-    padding: '40px 20px', // Add padding for aesthetics
-    margin: '4rem auto', // Center the content
+    backgroundColor: "rgba(240, 248, 255, 0.8)", // Light background with 80% opacity
+    padding: "40px 20px", // Add padding for aesthetics
+    margin: "4rem auto", // Center the content
+    borderRadius: "10px", // Add border radius for aesthetics
   };
 
   return (
-    <div className='my-5'>
+    <div className="my-5">
       <Helmet>
         <title>
           À Propos de Maison des Algues - Produits Bio et Parapharmacie
         </title>
         <meta
-          name='description'
+          name="description"
           content="Découvrez la mission et les valeurs de Maison des Algues, une boutique spécialisée dans les produits bio, parapharmacie, et soins à base d'algues et d'huiles naturelles."
         />
       </Helmet>
 
       <div style={aboutUsStyle}>
-        <h2 className='text-center mb-4'>À Propos de Maison des Algues</h2>
+        <h2 className="text-center mb-4">À Propos de Maison des Algues</h2>
         <Row>
-          <Col md='6' className='mb-4'>
+          <Col md="6" className="mb-4">
             <img
               src={AboutUsImage}
-              alt='Maison des Algues - Bio and Parapharmacy Products with Seaweed and Oils'
-              className='img-fluid'
+              alt="Maison des Algues - Bio and Parapharmacy Products with Seaweed and Oils"
+              className="img-fluid"
+              style={{ borderRadius: "10px" }}
             />
           </Col>
           <Col
-            md='6'
-            className='mb-4 d-flex flex-column justify-content-center'
+            md="6"
+            className="mb-4 d-flex flex-column justify-content-center"
           >
-            <h4 className='text-start'>Notre Mission</h4>
+            <h4 className="text-start">Notre Mission</h4>
             <p>
               Chez <strong>Maison des Algues</strong>, notre mission est de
               fournir des produits bio de haute qualité pour le bien-être et la
@@ -45,7 +46,7 @@ const AboutUs = () => {
               naturels, enrichis en algues et huiles essentielles, qui
               soutiennent une vie saine et naturelle.
             </p>
-            <h4 className='text-start'>Nos Valeurs</h4>
+            <h4 className="text-start">Nos Valeurs</h4>
             <p>
               Nous croyons en la pureté, la qualité, et le respect de la nature.
               Chaque produit de <strong>Maison des Algues</strong> est

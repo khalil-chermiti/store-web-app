@@ -17,12 +17,8 @@ import Header from "../../components/Common/Homepage/Header";
 import AboutUs from "../../components/Common/Homepage/AboutUs";
 import Contact from "../Contact";
 import HuilesImage from "../../../public/images/huiles.jpg";
-
-// <img
-//   src={HuilesImage}
-//   alt="Vintorama produits"
-//   className="img-fluid rounded"
-// />
+import HuilesImage2 from "../../../public/images/vintorama2.jpg";
+import HuilesImage3 from "../../../public/images/vintorama3.jpg";
 
 class Homepage extends React.PureComponent {
   render() {
@@ -65,9 +61,7 @@ class Homepage extends React.PureComponent {
         <Row>
           <section className="container py-5">
             {/* Heading */}
-            <h1 className="text-center mb-4" style={{ color: "green" }}>
-              Vintorama
-            </h1>
+            <h1 className="text-center mb-4">Vintorama</h1>
 
             <div className="row align-items-center">
               {/* Image on the Left */}
@@ -80,14 +74,38 @@ class Homepage extends React.PureComponent {
                   slides={banners}
                   responsive={responsiveOneItemCarousel}
                 >
-                  <img src={HuilesImage} />
-                  <img src={HuilesImage} />
-                  <img src={HuilesImage} />
+                  <img
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      borderRadius: "10px",
+                    }}
+                    src={HuilesImage}
+                  />
+                  <img
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      borderRadius: "10px",
+                    }}
+                    src={HuilesImage2}
+                  />
+                  <img
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      borderRadius: "10px",
+                    }}
+                    src={HuilesImage3}
+                  />
                 </CarouselSlider>
               </div>
               {/* Description on the Right */}
               <div className="col-md-6">
-                <p className="mt-3">
+                <p className="mb-3 mt-3">
                   Découvrez <strong>Vintorama</strong>, notre marque exclusive
                   de produits naturels. Nos préparations, composées d'huiles
                   naturelles sélectionnées avec soin par nos experts, sont
@@ -115,27 +133,15 @@ class Homepage extends React.PureComponent {
                   nature.
                 </p>
 
-                <a
-                  href="/vintorama" // Update this to your actual products page URL
-                  style={{
-                    padding: "10px 0px",
-                    borderBottom: "1px solid green",
+                <button
+                  className="button-37"
+                  onClick={() => {
+                    window.location.href = "/vintorama";
                   }}
+                  styel={{ marginTop: "30px" }}
                 >
-                  <span className="text-success">
-                    Découvrez nos produits
-                    <span
-                      style={{
-                        fontSize: "1.5rem",
-                        verticalAlign: "middle",
-                        marginLeft: "5px",
-                        color: "green",
-                      }}
-                    >
-                      &#8594;
-                    </span>
-                  </span>
-                </a>
+                  Découvrez nos produits &#8594;
+                </button>
               </div>
             </div>
             {/* Redirect Button */}

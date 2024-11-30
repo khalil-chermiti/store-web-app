@@ -21,13 +21,10 @@ const Vintorama = () => {
   return (
     <div className="container py-5">
       {/* Page Heading */}
-      <h2 className="text-center mb-3" style={{ color: "lightgreen" }}>
-        Produits Vintorama a{" "}
-        <span style={{ color: "green" }}>
-          <strong>20dt</strong>
-        </span>
-      </h2>
-      <p className="text-center mb-5">
+      <h1 className="text-center mb-3" style={{ color: "green" }}>
+        Produits Vintorama a <strong>20dt</strong>
+      </h1>
+      <p className="text-center mb-5 big-parag">
         Découvrez notre sélection exceptionnelle d'huiles naturelles,
         soigneusement élaborées pour répondre à vos besoins de bien-être et de
         beauté
@@ -38,9 +35,9 @@ const Vintorama = () => {
         {products?.map((product, index) => (
           <div className="col-md-4 col-sm-6 mb-4" key={index}>
             <Link to={`/product/${product.slug}`}>
-              <div className="card h-100">
+              <div className="card h-100 box-shadow-1">
                 {/* Product Image */}
-                {product.imageUrl? (
+                {product.imageUrl ? (
                   <img
                     src={product.imageUrl}
                     alt={product.name}
@@ -58,13 +55,12 @@ const Vintorama = () => {
 
                 {/* Product Details */}
                 <div className="card-body d-flex flex-column">
-                  <h5
+                  <h4
                     className="card-title text-center"
                     style={{ color: "lightgreen" }}
                   >
                     {product.name}
-                  </h5>
-                  <p className="card-text text-center">{product.description}</p>
+                  </h4>
                 </div>
               </div>
             </Link>

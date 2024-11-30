@@ -303,6 +303,20 @@ const deleteProductsHavingNameVintorama = async () => {
   }
 };
 
-module.exports = {
-  deleteProductsHavingNameVintorama,
-};
+// get all products name
+function getAllProudctsNames() {
+  Product.find({}, (err, products) => {
+    if (err) {
+      console.log(err);
+    } else {
+      products
+        // filter proudcts that has name containing "Vintorama"
+        .filter((product) => !product.name?.includes("Vintorama"))
+        .forEach((product) => {
+          console.log(product.name);
+        });
+    }
+  });
+}
+
+module.exports = {};
