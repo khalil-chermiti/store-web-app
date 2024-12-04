@@ -18,6 +18,7 @@
     { "to": "/users", "name": "Utilisateurs", "prefix": "/dashboard" },
     { "to": "/merchant", "name": "Commerçants", "prefix": "/dashboard" },
     { "to": "/orders/customers", "name": "Commandes", "prefix": "/dashboard" },
+    { "to": "/blog", "name": "blog", "prefix": "/dashboard" },
     { "to": "/review", "name": "Avis", "prefix": "/dashboard" },
     { "to": "/wishlist", "name": "Liste de souhaits", "prefix": "/dashboard" }
   ],

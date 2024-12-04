@@ -39,6 +39,8 @@ import { CART_ITEMS } from "../../constants";
 import CommandeForm from "../CommandeForm";
 import WishList from "../WishList";
 import Vintorama from "../Vintorama/vintorama";
+import Blog from "../../components/Manager/Blog";
+import BlogPost from "../../components/Manager/BlogPost";
 
 class Application extends React.PureComponent {
   constructor(props) {
@@ -114,6 +116,10 @@ class Application extends React.PureComponent {
                 <Route path="/auth/success" component={AuthSuccess} />
                 <Route path="/support" component={Authentication(Support)} />
                 <Route path="/wishlist" component={WishList} />
+
+                <Route path="/blogs/:id" component={BlogPost} />
+                <Route path="/blogs" component={Blog} />
+
                 <Route
                   path="/dashboard"
                   component={Authentication(Dashboard)}

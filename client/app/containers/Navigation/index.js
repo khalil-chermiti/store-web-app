@@ -182,9 +182,7 @@ class Navigation extends React.PureComponent {
                   />
                 )}
                 <Link to="/">
-                  <h1 className="logo">
-                    🌿 MAISON DES ALGUES 🌿
-                  </h1>
+                  <h1 className="logo">🌿 MAISON DES ALGUES 🌿</h1>
                 </Link>
               </div>
             </Col>
@@ -277,6 +275,16 @@ class Navigation extends React.PureComponent {
                       activeClassName="active"
                     >
                       Wishlist
+                    </NavLink>
+                  </NavItem>
+
+                  <NavItem>
+                    <NavLink
+                      tag={ActiveLink}
+                      to="/blogs"
+                      activeClassName="active"
+                    >
+                      Blog
                     </NavLink>
                   </NavItem>
 

@@ -66,7 +66,7 @@ const Input = props => {
         onChange={e => {
           _onChange(e);
         }}
-        placeholder={'Product Description'}
+        placeholder={'Ecrivez ici...'}
         modules={{
           toolbar: [
             [{ header: [1, 2, 3, false] }],
