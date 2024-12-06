@@ -4,40 +4,43 @@
  *
  */
 
-import React from 'react';
+import React from "react";
 
-import { connect } from 'react-redux';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { Container } from 'reactstrap';
+import { connect } from "react-redux";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { Container } from "reactstrap";
 
-import actions from '../../actions';
+import actions from "../../actions";
 
 // routes
-import Login from '../Login';
-import Signup from '../Signup';
-import MerchantSignup from '../MerchantSignup';
-import HomePage from '../Homepage';
-import Dashboard from '../Dashboard';
-import Support from '../Support';
-import Navigation from '../Navigation';
-import Authentication from '../Authentication';
-import Notification from '../Notification';
-import ForgotPassword from '../ForgotPassword';
-import ResetPassword from '../ResetPassword';
-import Shop from '../Shop';
-import BrandsPage from '../BrandsPage';
-import ProductPage from '../ProductPage';
-import Sell from '../Sell';
-import Contact from '../Contact';
-import OrderSuccess from '../OrderSuccess';
-import OrderPage from '../OrderPage';
-import AuthSuccess from '../AuthSuccess';
+import Login from "../Login";
+import Signup from "../Signup";
+import MerchantSignup from "../MerchantSignup";
+import HomePage from "../Homepage";
+import Dashboard from "../Dashboard";
+import Support from "../Support";
+import Navigation from "../Navigation";
+import Authentication from "../Authentication";
+import Notification from "../Notification";
+import ForgotPassword from "../ForgotPassword";
+import ResetPassword from "../ResetPassword";
+import Shop from "../Shop";
+import BrandsPage from "../BrandsPage";
+import ProductPage from "../ProductPage";
+import Sell from "../Sell";
+import Contact from "../Contact";
+import OrderSuccess from "../OrderSuccess";
+import OrderPage from "../OrderPage";
+import AuthSuccess from "../AuthSuccess";
 
-import Footer from '../../components/Common/Footer';
-import Page404 from '../../components/Common/Page404';
-import { CART_ITEMS } from '../../constants';
-import CommandeForm from '../CommandeForm';
-import WishList from '../WishList';
+import Footer from "../../components/Common/Footer";
+import Page404 from "../../components/Common/Page404";
+import { CART_ITEMS } from "../../constants";
+import CommandeForm from "../CommandeForm";
+import WishList from "../WishList";
+import Vintorama from "../Vintorama/vintorama";
+import Blog from "../../components/Manager/Blog";
+import BlogPost from "../../components/Manager/BlogPost";
 
 class Application extends React.PureComponent {
   constructor(props) {
@@ -45,7 +48,7 @@ class Application extends React.PureComponent {
     this.handleStorage = this.handleStorage.bind(this);
   }
   componentDidMount() {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
 
     if (token) {
       this.props.fetchProfile();
@@ -53,9 +56,9 @@ class Application extends React.PureComponent {
 
     this.props.handleCart();
 
-    document.addEventListener('keydown', this.handleTabbing);
-    document.addEventListener('mousedown', this.handleMouseDown);
-    window.addEventListener('storage', this.handleStorage);
+    document.addEventListener("keydown", this.handleTabbing);
+    document.addEventListener("mousedown", this.handleMouseDown);
+    window.addEventListener("storage", this.handleStorage);
   }
 
   handleStorage(e) {
@@ -66,59 +69,65 @@ class Application extends React.PureComponent {
 
   handleTabbing(e) {
     if (e.keyCode === 9) {
-      document.body.classList.add('user-is-tabbing');
+      document.body.classList.add("user-is-tabbing");
     }
   }
 
   handleMouseDown() {
-    document.body.classList.remove('user-is-tabbing');
+    document.body.classList.remove("user-is-tabbing");
   }
 
   render() {
     return (
-      <div className='application'>
+      <div className="application">
         <Notification />
         <Navigation />
-        <main className='main'>
+        <main className="main">
           <Container>
-            <div className='wrapper'>
+            <div className="wrapper">
               <Switch>
-                <Route exact path='/' component={HomePage} />
+                <Route exact path="/" component={HomePage} />
                 <Route
                   exact
-                  path='/google495c0453de57f40b'
-                  render={() => <Redirect to='/google495c0453de57f40b.html' />}
+                  path="/google495c0453de57f40b"
+                  render={() => <Redirect to="/google495c0453de57f40b.html" />}
                 />
 
-                <Route path='/shop' component={Shop} />
-                <Route path='/sell' component={Sell} />
-                <Route path='/contact' component={Contact} />
-                <Route path='/brands' component={BrandsPage} />
-                <Route path='/product/:slug' component={ProductPage} />
-                <Route path='/order/success/:id' component={OrderSuccess} />
-                <Route path='/order/command' component={CommandeForm} />
+                <Route path="/shop" component={Shop} />
+                <Route path="/sell" component={Sell} />
+                <Route path="/contact" component={Contact} />
+                <Route path="/brands" component={BrandsPage} />
+                <Route path="/product/:slug" component={ProductPage} />
+                <Route path="/order/success/:id" component={OrderSuccess} />
+                <Route path="/order/command" component={CommandeForm} />
 
-                <Route path='/order/:id' component={OrderPage} />
-                <Route path='/login' component={Login} />
-                <Route path='/register' component={Signup} />
+                <Route path="/order/:id" component={OrderPage} />
+                <Route path="/login" component={Login} />
+                <Route path="/register" component={Signup} />
                 <Route
-                  path='/merchant-signup/:token'
+                  path="/merchant-signup/:token"
                   component={MerchantSignup}
                 />
-                <Route path='/forgot-password' component={ForgotPassword} />
+                <Route path="/forgot-password" component={ForgotPassword} />
                 <Route
-                  path='/reset-password/:token'
+                  path="/reset-password/:token"
                   component={ResetPassword}
                 />
-                <Route path='/auth/success' component={AuthSuccess} />
-                <Route path='/support' component={Authentication(Support)} />
-                <Route path='/wishlist' component={WishList} />
+                <Route path="/auth/success" component={AuthSuccess} />
+                <Route path="/support" component={Authentication(Support)} />
+                <Route path="/wishlist" component={WishList} />
+
+                <Route path="/blogs/:id" component={BlogPost} />
+                <Route path="/blogs" component={Blog} />
+
                 <Route
-                  path='/dashboard'
+                  path="/dashboard"
                   component={Authentication(Dashboard)}
                 />
-                <Route path='/404' component={Page404} />
-                <Route path='*' component={Page404} />
+
+                <Route path="/vintorama" component={Vintorama} />
+                <Route path="/404" component={Page404} />
+                <Route path="*" component={Page404} />
               </Switch>
             </div>
           </Container>
@@ -129,10 +138,10 @@ class Application extends React.PureComponent {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     authenticated: state.authentication.authenticated,
-    products: state.product.storeProducts
+    products: state.product.storeProducts,
   };
 };
 

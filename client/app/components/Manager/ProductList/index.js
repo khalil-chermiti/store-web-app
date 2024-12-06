@@ -4,44 +4,66 @@
  *
  */
 
-import React from 'react';
+import React from "react";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-const ProductList = props => {
+const ProductList = (props) => {
   const { products } = props;
 
   return (
-    <div className='p-list'>
+    <div className="p-list">
       {products.map((product, index) => (
         <Link
           to={`/dashboard/product/edit/${product._id}`}
           key={index}
-          className='d-flex flex-row align-items-center mx-0 mb-3 product-box'
+          className="d-flex flex-row align-items-center mx-0 mb-3 product-box"
         >
           <img
-            className='item-image'
+            className="item-image"
             src={`${
               product && product.imageUrl
                 ? product.imageUrl
-                : '/images/placeholder-image.png'
+                : "/images/placeholder-image.png"
             }`}
           />
-          <div className='d-flex flex-column justify-content-center px-3 text-truncate'>
-            <h4 className='text-truncate'>{product.name}</h4>
-            <div className='ql-snow'>
-              <p
-                style={{
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                  maxHeight: '3.6em',
-                  lineHeight: '1.2em'
-                }}
-                className='mb-2 text-truncate ql-editor'
-                dangerouslySetInnerHTML={{ __html: product.description }}
-              />
+          <div className="d-flex flex-column justify-content-between px-3 text-truncate w-100">
+            <div className="d-flex flex-row justify-content-between">
+              <h4 className="text-truncate">{product.name}</h4>
+              {product.isActive ? (
+                <span
+                  className="badge badge-success"
+                  style={{
+                    fontSize: "12px",
+                    padding: "5px",
+                    borderRadius: "5px",
+                    color: "white",
+                    height: "fit-content",
+                  }}
+                >
+                  actif
+                </span>
+              ) : (
+                <span
+                  style={{
+                    fontSize: "12px",
+                    padding: "5px",
+                    borderRadius: "5px",
+                    color: "white",
+                    height: "fit-content",
+                  }}
+                  className="badge badge-danger flex-shrink-0"
+                >
+                  inactif
+                </span>
+              )}
             </div>
+            <p>
+              <strong>Quantité</strong>: {product.quantity}
+            </p>
+            <p>
+              <strong>Prix</strong>: {product.price} dt
+            </p>
           </div>
         </Link>
       ))}

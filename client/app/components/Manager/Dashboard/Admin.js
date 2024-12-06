@@ -25,6 +25,7 @@ import Review from '../../../containers/Review';
 import Wishlist from '../../../containers/WishList';
 import ListCategoryItems from '../../../containers/Category/ListCategoryItems';
 import CategoryMenu from '../../../containers/Category/CategoryMenu';
+import { Blog } from '../../../containers/Blog';
 
 const Admin = props => {
   return (
@@ -48,6 +49,7 @@ const Admin = props => {
               <Route path='/dashboard/review' component={Review} />
               <Route path='/dashboard/wishlist' component={Wishlist} />
               <Route path='/dashboard/menu' component={CategoryMenu} />
+              <Route path='/dashboard/blog' component={Blog} />
               <Route path='*' component={Page404} />
             </Switch>
           </div>

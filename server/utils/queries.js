@@ -1,6 +1,6 @@
 const Mongoose = require('mongoose');
 
-exports.getStoreProductsQuery = (min, max, rating) => {
+exports.getStoreProductsQuery = (min, max, rating , isVintorama) => {
   rating = Number(rating);
   max = Number(max);
   min = Number(min);
@@ -39,9 +39,14 @@ exports.getStoreProductsQuery = (min, max, rating) => {
       }
     },
     {
-      $match: {
+      $match: isVintorama ? {
         'brand.isActive': true
+      }: {
+        'brand.isActive': true,
+        // brand name does not start with Vintorama
+        'brand.name': { $not: /^Vintorama/ }
       }
+
     },
     {
       $lookup: {
