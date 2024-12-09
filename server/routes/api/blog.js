@@ -1,26 +1,30 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-const Blog = require("../../models/blog");
-const auth = require("../../middleware/auth");
+const multer = require('multer');
+const { multerStorage } = require('../../utils/storage');
 
-router.post("/add", auth, async (req, res) => {
+const Blog = require('../../models/blog');
+const auth = require('../../middleware/auth');
+
+router.post('/add', auth, async (req, res) => {
   try {
     if (!req.body.title || req.body.title.trim().length === 0) {
       return res.status(400).json({
-        error: "s'il vous plaît entrer le titre de votre blog.",
+        error: "s'il vous plaît entrer le titre de votre blog."
       });
     }
 
     if (!req.body.content || req.body.content.trim().length === 0) {
       return res.status(400).json({
-        error: "s'il vous plaît entrer le contenu de votre blog.",
+        error: "s'il vous plaît entrer le contenu de votre blog."
       });
     }
+    // const imagePaths = req.files.map(file => file.path);
 
     const blog = new Blog({
       title: req.body.title,
-      content: req.body.content,
+      content: req.body.content
     });
 
     const blogDoc = await blog.save();
@@ -28,31 +32,31 @@ router.post("/add", auth, async (req, res) => {
     res.status(200).json({
       success: true,
       message: `Votre blog a été ajouté avec succès!`,
-      blog: blogDoc,
+      blog: blogDoc
     });
   } catch (error) {
     console.log(error);
     res.status(400).json({
-      error: "Votre demande n'a pas pu être traitée. Veuillez réessayer.",
+      error: "Votre demande n'a pas pu être traitée. Veuillez réessayer."
     });
   }
 });
 
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const blogs = await Blog.find();
 
     res.status(200).json({
-      blogs,
+      blogs
     });
   } catch (error) {
     res.status(400).json({
-      error: "Votre demande n'a pas pu être traitée. Veuillez réessayer.",
+      error: "Votre demande n'a pas pu être traitée. Veuillez réessayer."
     });
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const blogId = req.params.id;
 
@@ -60,21 +64,21 @@ router.get("/:id", async (req, res) => {
 
     if (!blogDoc) {
       res.status(404).json({
-        message: `Impossible de trouver le blog avec l'identifiant: ${blogId}.`,
+        message: `Impossible de trouver le blog avec l'identifiant: ${blogId}.`
       });
     }
 
     res.status(200).json({
-      blog: blogDoc,
+      blog: blogDoc
     });
   } catch (error) {
     res.status(400).json({
-      error: "Votre demande n'a pas pu être traitée. Veuillez réessayer.",
+      error: "Votre demande n'a pas pu être traitée. Veuillez réessayer."
     });
   }
 });
 
-router.put("/:id", auth, async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
   try {
     const blogId = req.params.id;
 
@@ -82,7 +86,7 @@ router.put("/:id", auth, async (req, res) => {
 
     if (!blogDoc) {
       res.status(404).json({
-        message: `Impossible de trouver le blog avec l'identifiant: ${blogId}.`,
+        message: `Impossible de trouver le blog avec l'identifiant: ${blogId}.`
       });
     }
 
@@ -95,16 +99,16 @@ router.put("/:id", auth, async (req, res) => {
     res.status(200).json({
       success: true,
       message: `Votre blog a été mis à jour avec succès!`,
-      blog,
+      blog
     });
   } catch (error) {
     res.status(400).json({
-      error: "Votre demande n'a pas pu être traitée. Veuillez réessayer.",
+      error: "Votre demande n'a pas pu être traitée. Veuillez réessayer."
     });
   }
 });
 
-router.delete("/:id", auth, async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
   try {
     const blogId = req.params.id;
 
@@ -112,7 +116,7 @@ router.delete("/:id", auth, async (req, res) => {
 
     if (!blogDoc) {
       res.status(404).json({
-        message: `Impossible de trouver le blog avec l'identifiant: ${blogId}.`,
+        message: `Impossible de trouver le blog avec l'identifiant: ${blogId}.`
       });
     }
 
@@ -120,11 +124,11 @@ router.delete("/:id", auth, async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: `Votre blog a été supprimé avec succès!`,
+      message: `Votre blog a été supprimé avec succès!`
     });
   } catch (error) {
     res.status(400).json({
-      error: "Votre demande n'a pas pu être traitée. Veuillez réessayer.",
+      error: "Votre demande n'a pas pu être traitée. Veuillez réessayer."
     });
   }
 });
