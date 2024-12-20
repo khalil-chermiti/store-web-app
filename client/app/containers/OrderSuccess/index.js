@@ -4,15 +4,15 @@
  *
  */
 
-import React from 'react';
+import React from "react";
 
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-import actions from '../../actions';
+import actions from "../../actions";
 
-import NotFound from '../../components/Common/NotFound';
-import LoadingIndicator from '../../components/Common/LoadingIndicator';
+import NotFound from "../../components/Common/NotFound";
+import LoadingIndicator from "../../components/Common/LoadingIndicator";
 
 class OrderSuccess extends React.PureComponent {
   componentDidMount() {
@@ -31,28 +31,18 @@ class OrderSuccess extends React.PureComponent {
     const { order, isLoading } = this.props;
 
     return (
-      <div className='order-success'>
+      <div className="order-success">
         {isLoading ? (
           <LoadingIndicator />
         ) : order._id ? (
-          <div className='order-message'>
+          <div className="order-message">
             <h2>Merci pour votre commande .</h2>
             <p>
-              Commande{' '}
-              <Link
-                to={{
-                  pathname: `/order/${order._id}?success`,
-                  state: { prevPath: location.pathname }
-                }}
-                // to={`/order/${order._id}?success`}
-                className='order-label'
-              >
-                #{order._id}
-              </Link>{' '}
-              est terminé.
+              Commande <span className="order-label">#{order._id}</span> est
+              terminé.
             </p>
             <p>Un e-mail de confirmation vous sera envoyé .</p>
-            <div className='order-success-actions'>
+            <div className="order-success-actions">
               {/* <Link to='/dashboard/orders' className='btn-link'>
                 Manage Orders
               </Link>
@@ -62,17 +52,17 @@ class OrderSuccess extends React.PureComponent {
             </div>
           </div>
         ) : (
-          <NotFound message='No order found.' />
+          <NotFound message="No order found." />
         )}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     order: state.order.order,
-    isLoading: state.order.isLoading
+    isLoading: state.order.isLoading,
   };
 };
 
