@@ -15,6 +15,9 @@ const BlogSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  imageUrl: {
+    type: String
+  },
 
   updated: {
     type: Date,
