@@ -24,6 +24,7 @@ export const blogChange = (key, value) => {
 export const addBlog = () => {
   return async (dispatch, getState) => {
     const blog = getState().blog.blogFormData;
+    console.log(blog);
 
     try {
       // 1. Extract images from content
@@ -65,9 +66,18 @@ export const addBlog = () => {
 
       // 4. Update the blog data with new content
       const updatedBlog = { ...blog, content: updatedContent };
+      const formData = new FormData();
+
+      formData.append('image', updatedBlog.image);
+      formData.append('title', updatedBlog.title);
+      formData.append('content', updatedBlog.content);
+
+      console.log('updateBlog:', formData);
 
       // 5. Send blog data to the server
-      const response = await axios.post(`${API_URL}/blog/add`, updatedBlog);
+      const response = await axios.post(`${API_URL}/blog/add`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
 
       dispatch({
         type: ADD_BLOG,
@@ -129,11 +139,69 @@ export const blogEditChange = (key, value) => {
 export const updateBlog = () => {
   return async (dispatch, getState) => {
     const blog = getState().blog.blog;
-    try {
-      const response = await axios.put(`${API_URL}/blog/${blog._id}`, blog);
+    const formData = new FormData();
 
+    // Extract images from content
+    const content = blog.content;
+    const imageRegex = /<img[^>]+src="([^">]+)"/g; // Regex to find Base64 images
+    const base64Images = [];
+    let match;
+
+    // Collect all Base64 images
+    while ((match = imageRegex.exec(content)) !== null) {
+      const src = match[1];
+      if (src.startsWith('data:image/')) {
+        base64Images.push(src); // Add Base64 images to array
+      }
+    }
+
+    // 1. Upload the Base64 images to the server and get their URLs
+    const imageUploadPromises = base64Images.map(async base64 => {
+      const file = base64ToBlob(base64); // Convert Base64 to Blob
+      const imageFormData = new FormData();
+      imageFormData.append('images', file);
+
+      const response = await axios.post(
+        `${API_URL}/image/upload`,
+        imageFormData,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        }
+      );
+
+      return response.data.files[0].fileUrl; // Return uploaded image URL
+    });
+
+    const uploadedImageUrls = await Promise.all(imageUploadPromises);
+
+    // 2. Replace Base64 images in content with the uploaded image URLs
+    let updatedContent = content;
+    base64Images.forEach((base64, index) => {
+      updatedContent = updatedContent.replace(base64, uploadedImageUrls[index]);
+    });
+
+    // Append the fields to FormData
+    formData.append('title', blog.title);
+    formData.append('content', updatedContent);
+
+    // If the image has changed, append the new image file to FormData
+    if (blog.image) {
+      formData.append('image', blog.image); // Make sure `blog.image` is a File object
+    }
+
+    try {
+      // Send the FormData to the server to update the blog
+      const response = await axios.put(
+        `${API_URL}/blog/${blog._id}`,
+        formData,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' } // Required for file uploads
+        }
+      );
+
+      // Dispatch the success action and update the state
       dispatch({
-        type: ADD_BLOG,
+        type: ADD_BLOG, // Or use UPDATED_BLOG action type if you have one
         payload: response.data.blog
       });
 

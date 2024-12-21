@@ -74,22 +74,30 @@ const Footer = () => {
         </div>
         <ul className='footer-social-item'>
           <li>
-            <a href='/#facebook' rel='noreferrer noopener' target='_blank'>
+            <a
+              href='https://www.facebook.com/profile.php?id=100063687092876&mibextid=kFxxJD&rdid=tqyI9dC93VyzLXlN&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F15bsYRjZxX%2F%3Fmibextid%3DkFxxJD#'
+              rel='noreferrer noopener'
+              target='_blank'
+            >
               <span className='facebook-icon' />
             </a>
           </li>
           <li>
-            <a href='/#instagram' rel='noreferrer noopener' target='_blank'>
+            <a
+              href='https://www.instagram.com/lamaisons_desalguesetdeshuiles/?igsh=M2wyemJ6dGF4eXFq'
+              rel='noreferrer noopener'
+              target='_blank'
+            >
               <span className='instagram-icon' />
             </a>
           </li>
+
           <li>
-            <a href='/#pinterest' rel='noreferrer noopener' target='_blank'>
-              <span className='pinterest-icon' />
-            </a>
-          </li>
-          <li>
-            <a href='/#twitter' rel='noreferrer noopener' target='_blank'>
+            <a
+              href='https://www.facebook.com/profile.php?id=100063687092876&mibextid=kFxxJD&rdid=tqyI9dC93VyzLXlN&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F15bsYRjZxX%2F%3Fmibextid%3DkFxxJD#'
+              rel='noreferrer noopener'
+              target='_blank'
+            >
               <span className='twitter-icon' />
             </a>
           </li>
