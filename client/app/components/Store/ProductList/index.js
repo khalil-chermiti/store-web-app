@@ -43,7 +43,12 @@ const ProductList = (props) => {
                 />
               </div>
 
-              <div className="item-link">
+              <div
+                className="item-link"
+                style={{
+                  border: "1px solid green",
+                }}
+              >
                 <Link
                   to={`/product/${product.slug}`}
                   className="d-flex flex-column h-100"
