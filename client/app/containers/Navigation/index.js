@@ -130,7 +130,7 @@ class Navigation extends React.PureComponent {
     } = this.props;
 
     const inputProps = {
-      placeholder: "Trouver un produit",
+      placeholder: "Recherche Produits",
       value: searchValue,
       onChange: (_, { newValue }) => {
         onSearch(newValue);
