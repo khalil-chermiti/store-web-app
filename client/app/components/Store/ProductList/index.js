@@ -46,7 +46,7 @@ const ProductList = (props) => {
               <div
                 className="item-link"
                 style={{
-                  border: "1px solid green",
+                  border: "1px solid lightgray",
                 }}
               >
                 <Link

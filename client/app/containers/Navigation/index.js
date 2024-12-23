@@ -190,9 +190,13 @@ class Navigation extends React.PureComponent {
                   <img
                     src={WebsiteLogo}
                     style={{
-                      width: "150px",
+                      width: "50px",
+                      height: "50px",
                     }}
                   />
+                  <span style={{ color: "#66770b", fontSize: "12px" }}>
+                    La Maison Des Algues
+                  </span>
                 </Link>
               </div>
             </Col>
