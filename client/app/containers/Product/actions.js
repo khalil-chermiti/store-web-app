@@ -281,8 +281,6 @@ export const addProduct = () => {
         }
       }
 
-      console.log(formData);
-
       const response = await axios.post(`${API_URL}/product/add`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
@@ -324,8 +322,6 @@ export const updateProduct = () => {
       };
 
       const product = getState().product.product;
-
-      console.log('product', product);
 
       const brand = unformatSelectOptions([product.brand]);
 

@@ -12,8 +12,6 @@ router.post(
   auth,
   multer({ storage: multerStorage }).single('image'),
   async (req, res) => {
-    console.log(req);
-
     try {
       if (!req.body.title || req.body.title.trim().length === 0) {
         return res.status(400).json({
@@ -31,7 +29,6 @@ router.post(
         process.env.NODE_ENV === 'production'
           ? 'https://maisondesalgues.com/api/'
           : 'http://localhost:3000/api/';
-      console.log(req.file);
 
       const blog = new Blog({
         title: req.body.title,
@@ -47,7 +44,6 @@ router.post(
         blog: blogDoc
       });
     } catch (error) {
-      console.log(error);
       res.status(400).json({
         error: "Votre demande n'a pas pu être traitée. Veuillez réessayer."
       });
@@ -96,8 +92,6 @@ router.put(
   auth,
   multer({ storage: multerStorage }).single('image'), // Use multer for file upload
   async (req, res) => {
-    console.log(req);
-
     try {
       const blogId = req.params.id;
 
@@ -112,7 +106,6 @@ router.put(
       // Update the title and content as usual
       blogDoc.title = req.body.title;
       blogDoc.content = req.body.content;
-      console.log(req.file);
 
       // Check if a new image has been uploaded, and update the imageUrl if necessary
       if (req.file) {
@@ -131,7 +124,6 @@ router.put(
         blog: updatedBlog
       });
     } catch (error) {
-      console.error(error);
       res.status(400).json({
         error: "Votre demande n'a pas pu être traitée. Veuillez réessayer."
       });
@@ -151,7 +143,7 @@ router.delete('/:id', auth, async (req, res) => {
       });
     }
 
-    await blogDoc.remove();
+    await blogDoc.deleteOne();
 
     res.status(200).json({
       success: true,

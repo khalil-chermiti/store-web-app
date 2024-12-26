@@ -373,7 +373,6 @@ export const updateCategoryMenu = () => {
         dispatch(goBack());
       }
     } catch (error) {
-      console.log(error);
       handleError(error, dispatch);
     }
   };

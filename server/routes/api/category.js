@@ -32,7 +32,6 @@ router.post('/menu/add', auth, role.check(ROLES.Admin), (req, res) => {
       });
     }
 
-    console.log('saved this : ', data);
     res.status(200).json({
       success: true,
       message: `Category menu item has been added successfully!`,
@@ -232,7 +231,6 @@ router.put('/menu/:id', auth, role.check(ROLES.Admin), async (req, res) => {
       message: 'Category has been updated successfully!'
     });
   } catch (error) {
-    console.log('error occurred while updating the category menu item', error);
     res.status(400).json({
       error: 'Your request could not be processed. Please try again.'
     });

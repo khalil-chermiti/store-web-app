@@ -19,7 +19,6 @@ router.post('/add', async (req, res) => {
     // const user = req.user._id;
 
     const customerInfo = req.body.customerInfo;
-    console.log(customerInfo);
 
     const order = new Order({
       cart,
@@ -60,8 +59,6 @@ router.post('/add', async (req, res) => {
       order: { _id: orderDoc._id }
     });
   } catch (error) {
-    console.log(error);
-
     res.status(400).json({
       error: 'Your request could not be processed. Please try again.'
     });
@@ -258,7 +255,6 @@ router.get('/:orderId', async (req, res) => {
       order
     });
   } catch (error) {
-    console.log(error);
     res.status(400).json({
       error: 'Your request could not be processed. Please try again.'
     });

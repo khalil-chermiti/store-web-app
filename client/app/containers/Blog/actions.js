@@ -14,7 +14,6 @@ import {
 import { API_URL } from '../../constants';
 
 export const blogChange = (key, value) => {
-  console.log(key, value);
   return {
     type: BLOG_CHANGE,
     payload: { key, value }
@@ -24,7 +23,6 @@ export const blogChange = (key, value) => {
 export const addBlog = () => {
   return async (dispatch, getState) => {
     const blog = getState().blog.blogFormData;
-    console.log(blog);
 
     try {
       // 1. Extract images from content
@@ -71,8 +69,6 @@ export const addBlog = () => {
       formData.append('image', updatedBlog.image);
       formData.append('title', updatedBlog.title);
       formData.append('content', updatedBlog.content);
-
-      console.log('updateBlog:', formData);
 
       // 5. Send blog data to the server
       const response = await axios.post(`${API_URL}/blog/add`, formData, {

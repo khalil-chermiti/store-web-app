@@ -15,7 +15,6 @@ const AddBlog = props => {
   const { blogFormData, blogChange, addBlog, image } = props;
 
   const [selectedImage, setSelectedImage] = React.useState(null);
-  console.log('blogFormData', blogFormData);
 
   const handleSubmit = event => {
     event.preventDefault();

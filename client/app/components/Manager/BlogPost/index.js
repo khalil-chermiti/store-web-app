@@ -24,7 +24,6 @@ class BlogPost extends React.PureComponent {
       const response = await axios.get(API_URL + "/blog/" + blogId);
       this.setState({ blog: response.data.blog });
     } catch (error) {
-      console.error(error);
     }
   };
 

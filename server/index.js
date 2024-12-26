@@ -24,18 +24,6 @@ app.use(
   }),
 );
 
-app.use(
-  "/api/utils/images/dixolorama",
-  express.static(path.join("utils/images")),
-);
-
-app.use("/api/utils/images", express.static(path.join("utils/images")));
-
-app.use(
-  "/api/tmp/images",
-  express.static(path.join(__dirname, "..", "utils", "images")),
-);
-
 setupDB();
 createAdmin();
 

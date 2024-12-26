@@ -22,7 +22,6 @@ const { ROLES } = require('../../constants');
 router.get('/item/:slug', async (req, res) => {
   try {
     const slug = req.params.slug;
-    console.log('the slug is : ' + slug);
 
     const productDoc = await Product.findOne({ slug, isActive: true }).populate(
       {
@@ -30,8 +29,6 @@ router.get('/item/:slug', async (req, res) => {
         select: 'name isActive slug'
       }
     );
-
-    console.log('the product is : ' + productDoc);
 
     const hasNoBrand =
       productDoc?.brand === null || productDoc?.brand?.isActive === false;
@@ -190,8 +187,6 @@ router.post(
   role.check(ROLES.Admin, ROLES.Merchant),
   multer({ storage: multerStorage }).single('image'),
   async (req, res) => {
-    console.log(req);
-
     try {
       const sku = req.body.sku;
       const name = req.body.name;
@@ -473,7 +468,6 @@ router.get('/list/vintorama', async (req, res) => {
       products
     });
   } catch (error) {
-    console.log(error);
     res.status(400).json({
       error: 'Your request could not be processed. Please try again.'
     });

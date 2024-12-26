@@ -266,28 +266,9 @@ async function addVintoramaProducts() {
     });
 
     try {
-      console.log("Adding product: " + product.name);
       await product.save();
-      console.log("Product added: " + product.name);
-    } catch (err) {
-      console.log("error adding product: " + product.name);
-      console.log(err);
-    }
+    } catch (err) {}
   }
-
-  // set the brand of each product to Vintorama
-  // search for product with name starting with "vintorama_"
-  // try {
-  //   const products = await Product.find({ name: /^Vintorama/ });
-  //   for (let i = 0; i < products.length; i++) {
-  //     const product = products[i];
-  //     product.brand = "6748be58fca0084ffc7275b7";
-  //     await product.save();
-  //   }
-  // } catch (err) {
-  //   console.log("error setting brand for Vintorama products");
-  //   console.log(err);
-  // }
 }
 
 const deleteProductsHavingNameVintorama = async () => {
@@ -298,7 +279,6 @@ const deleteProductsHavingNameVintorama = async () => {
       await product.remove();
     }
   } catch (err) {
-    console.log("error deleting Vintorama products");
     console.log(err);
   }
 };
@@ -311,10 +291,7 @@ function getAllProudctsNames() {
     } else {
       products
         // filter proudcts that has name containing "Vintorama"
-        .filter((product) => !product.name?.includes("Vintorama"))
-        .forEach((product) => {
-          console.log(product.name);
-        });
+        .filter((product) => !product.name?.includes("Vintorama"));
     }
   });
 }

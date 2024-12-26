@@ -10,8 +10,6 @@ router.post(
   auth,
   multer({ storage: multerStorage }).array('images'), // Handle multiple images
   (req, res) => {
-    console.log('req :', req);
-
     try {
       // Check if files were uploaded
       if (!req.files || req.files.length === 0) {

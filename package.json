@@ -1,7 +1,7 @@
 {
-  "name": "mern-ecommerce",
+  "name": "maison-des-algues",
   "version": "1.0.0",
-  "description": "MERN Ecommerce",
+  "description": "Maison des algues",
   "main": "server/index.js",
   "scripts": {
     "dev": "npm-run-all --parallel dev:*",
@@ -12,10 +12,6 @@
     "install:server": "cd server && npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mohamedsamara/mern-ecommerce.git"
-  },
   "keywords": [
     "node",
     "express",
@@ -25,22 +21,8 @@
     "redux-thunk",
     "webpack"
   ],
-  "author": "Mohamed Samara (https://github.com/mohamedsamara)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mohamedsamara/mern-ecommerce/issues"
-  },
-  "homepage": "https://github.com/mohamedsamara/mern-ecommerce#readme",
   "devDependencies": {
     "cross-env": "^5.2.1",
     "npm-run-all": "^4.1.5"
-  },
-  "dependencies": {
-    "dompurify": "^3.1.7",
-    "mime-types": "^2.1.35",
-    "quill": "^2.0.2",
-    "react-helmet": "^6.1.0",
-    "react-quill": "^2.0.0",
-    "react-router-dom": "^6.26.2"
   }
 }

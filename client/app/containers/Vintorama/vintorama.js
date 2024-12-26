@@ -12,7 +12,6 @@ const Vintorama = () => {
         "https://maisondesalgues.com/api/product/list/vintorama",
       );
       const data = await response.json();
-      console.log(data);
       setProducts(data.products);
     }
     fetchProducts();

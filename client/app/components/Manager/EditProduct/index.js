@@ -151,7 +151,6 @@ const EditProduct = (props) => {
               placeholder={"Veuillez télécharger l'image"}
               value={image}
               onInputChange={(name, value) => {
-                console.log("value", value);
                 setSelectedImage(URL.createObjectURL(value));
                 productChange(name, value);
               }}

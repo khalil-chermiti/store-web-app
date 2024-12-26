@@ -18,7 +18,6 @@ import Signup from "../Signup";
 import MerchantSignup from "../MerchantSignup";
 import HomePage from "../Homepage";
 import Dashboard from "../Dashboard";
-import Support from "../Support";
 import Navigation from "../Navigation";
 import Authentication from "../Authentication";
 import Notification from "../Notification";
@@ -104,7 +103,6 @@ class Application extends React.PureComponent {
                   component={ResetPassword}
                 />
                 <Route path="/auth/success" component={AuthSuccess} />
-                <Route path="/support" component={Authentication(Support)} />
                 <Route path="/wishlist" component={WishList} />
 
                 <Route path="/blogs/:id" component={BlogPost} />

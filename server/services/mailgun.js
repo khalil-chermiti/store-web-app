@@ -13,7 +13,7 @@ class MailgunService {
         domain: domain
       });
     } catch (error) {
-      console.warn('Missing mailgun keys');
+      console.warn('Error or missing mailgun keys');
     }
   }
 }
@@ -25,7 +25,7 @@ exports.sendEmail = async (email, type, host, data) => {
     const message = prepareTemplate(type, host, data);
 
     const config = {
-      from: `MERN Store! <${sender}>`,
+      from: sender,
       to: email,
       subject: message.subject,
       text: message.text
