@@ -162,7 +162,12 @@ class Navigation extends React.PureComponent {
           </Container>
         </div>
         <Container>
-          <Row className="align-items-center top-header">
+          <Row
+            className="align-items-center top-header"
+            style={{
+              justifyContent: "space-between",
+            }}
+          >
             <Col
               xs={{ size: 13, order: 1 }}
               sm={{ size: 13, order: 1 }}
@@ -170,41 +175,42 @@ class Navigation extends React.PureComponent {
               lg={{ size: 4, order: 1 }}
               className="pr-0"
             >
-              <div
-                className="brand"
-                style={{
-                  justifyContent: "space-evenly",
-                }}
-              >
+              <div className="brand">
                 {categories && categories.length > 0 && (
-                  <Button
-                    borderless
-                    variant="empty"
-                    className="d-none d-md-block"
-                    ariaLabel="open the menu"
-                    icon={<BarsIcon />}
-                    onClick={() => this.toggleMenu()}
-                  />
+                  <div>
+                    <Button
+                      borderless
+                      variant="empty"
+                      className="d-none d-md-block"
+                      ariaLabel="open the menu"
+                      icon={<BarsIcon />}
+                      onClick={() => this.toggleMenu()}
+                    />
+                  </div>
                 )}
-                <Link to="/">
-                  <img
-                    src={WebsiteLogo}
-                    style={{
-                      width: "50px",
-                      height: "50px",
-                    }}
-                  />
-                  <span style={{ color: "#66770b", fontSize: "12px" }}>
-                    La Maison Des Algues
-                  </span>
-                </Link>
+                <div
+                  style={{
+                    flex: 1,
+                    textAlign: "center",
+                  }}
+                >
+                  <Link to="/">
+                    <img
+                      src={WebsiteLogo}
+                      style={{
+                        width: "200px",
+                        margin: "auto",
+                      }}
+                    />
+                  </Link>
+                </div>
               </div>
             </Col>
             <Col
               xs={{ size: 12, order: 4 }}
               sm={{ size: 12, order: 4 }}
               md={{ size: 10, order: 4 }}
-              lg={{ size: 3, order: 2 }}
+              lg={{ size: 4, order: 2 }}
               className="pt-2 pt-lg-0"
             >
               <Autosuggest
