@@ -530,7 +530,7 @@ const productsFilterOrganizer = (n, v, s) => {
         min: s.min,
         max: s.max,
         rating: s.rating,
-        order: s.order,
+        order: 2, // NOTE: sort products by price asc
         page: s.currentPage,
         limit: s.limit
       };
