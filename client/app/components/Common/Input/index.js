@@ -4,11 +4,11 @@
  *
  */
 
-import React from 'react';
-import ReactStars from 'react-rating-stars-component';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-const Input = props => {
+import React from "react";
+import ReactStars from "react-rating-stars-component";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+const Input = (props) => {
   const {
     autoComplete,
     type,
@@ -24,79 +24,79 @@ const Input = props => {
     label,
     name,
     onInputChange,
-    inlineElement
+    inlineElement,
   } = props;
 
-  const _onChange = e => {
-    if (type === 'ReactQuill') {
+  const _onChange = (e) => {
+    if (type === "ReactQuill") {
       onInputChange(name, e);
-    } else if (e.target.name === 'image') {
+    } else if (e.target.name === "image") {
       onInputChange(e.target.name, e.target.files[0]);
     } else {
       onInputChange(e.target.name, e.target.value);
     }
   };
 
-  if (type === 'textarea') {
-    const styles = `input-box${error ? ' invalid' : ''}`;
+  if (type === "textarea") {
+    const styles = `input-box${error ? " invalid" : ""}`;
 
     return (
       <div className={styles}>
         {label && <label>{label}</label>}
         <textarea
-          type={'textarea'}
-          onChange={e => {
+          type={"textarea"}
+          onChange={(e) => {
             _onChange(e);
           }}
           rows={rows}
           name={name}
           value={value}
           placeholder={placeholder}
-          className={'textarea-text'}
+          className={"textarea-text"}
         />
-        <span className='invalid-message'>{error && error[0]}</span>
+        <span className="invalid-message">{error && error[0]}</span>
       </div>
     );
-  } else if (type === 'ReactQuill') {
+  } else if (type === "ReactQuill") {
     return (
       <ReactQuill
-        className={'textarea-text'}
+        className={"textarea-text"}
         value={value}
         name={name}
-        onChange={e => {
+        onChange={(e) => {
           _onChange(e);
         }}
-        placeholder={'Ecrivez ici...'}
+        placeholder={"Ecrivez ici..."}
         modules={{
           toolbar: [
             [{ header: [1, 2, 3, false] }],
-            ['bold', 'italic', 'underline', 'strike'],
-            [{ list: 'ordered' }, { list: 'bullet' }],
-            ['link', 'image'],
+            ["bold", "italic", "underline", "strike"],
+            [{ list: "ordered" }, { list: "bullet" }],
+            ["link", "image"],
             [{ align: [] }],
-            ['clean']
-          ]
+            ["clean"],
+          ],
         }}
         formats={[
-          'header',
-          'bold',
-          'italic',
-          'underline',
-          'strike',
-          'list',
-          'bullet',
-          'link',
-          'image',
-          'align'
+          "header",
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "list",
+          "bullet",
+          "link",
+          "image",
+          "align",
         ]}
       />
     );
-  } else if (type === 'number') {
-    const styles = `input-box${error ? ' invalid' : ''}`;
+  } else if (type === "number") {
+    const styles = `input-box${error ? " invalid" : ""}`;
 
-    const handleOnInput = e => {
+    const handleOnInput = (e) => {
       if (!decimals) {
-        e.target.value = e.target.value.replace(/[^0-9]*/g, '');
+        e.target.value = e.target.value.replace(/[^0-9]*/g, "");
       }
     };
     return (
@@ -104,26 +104,26 @@ const Input = props => {
         {label && <label>{label}</label>}
         <input
           autoComplete={autoComplete}
-          step='step'
+          step="step"
           min={min || 0}
           max={max || null}
-          pattern='[0-9]'
+          pattern="[0-9]"
           onInput={handleOnInput}
           type={type}
-          onChange={e => {
+          onChange={(e) => {
             _onChange(e);
           }}
           disabled={disabled}
           name={name}
           value={value}
           placeholder={placeholder}
-          className={'input-number'}
+          className={"input-number"}
         />
-        <span className='invalid-message'>{error && error[0]}</span>
+        <span className="invalid-message">{error && error[0]}</span>
       </div>
     );
-  } else if (type === 'stars') {
-    const styles = `input-box${error ? ' invalid' : ''}`;
+  } else if (type === "stars") {
+    const styles = `input-box${error ? " invalid" : ""}`;
 
     return (
       <div className={styles}>
@@ -132,35 +132,35 @@ const Input = props => {
           name={name}
           starCount={5}
           size={30}
-          color={'#adb5bd'}
-          activeColor={'#ffb302'}
+          color={"#adb5bd"}
+          activeColor={"#ffb302"}
           a11y={true}
           isHalf={false}
-          emptyIcon={<i className='fa fa-star' />}
-          halfIcon={<i className='fa fa-star-half-alt' />}
-          filledIcon={<i className='fa fa-star' />}
+          emptyIcon={<i className="fa fa-star" />}
+          halfIcon={<i className="fa fa-star-half-alt" />}
+          filledIcon={<i className="fa fa-star" />}
           value={value}
-          onChange={value => {
+          onChange={(value) => {
             onInputChange(name, value);
           }}
         />
-        <span className='invalid-message'>{error && error[0]}</span>
+        <span className="invalid-message">{error && error[0]}</span>
       </div>
     );
   } else {
-    const styles = `input-box${inlineElement ? ` inline-btn-box` : ''} ${
-      error ? 'invalid' : ''
+    const styles = `input-box${inlineElement ? ` inline-btn-box` : ""} ${
+      error ? "invalid" : ""
     }`;
 
     return (
       <div className={styles}>
         {label && <label>{label}</label>}
-        <div className='input-text-block'>
+        <div className="input-text-block">
           <input
-            className={'input-text'}
+            className={"input-text"}
             autoComplete={autoComplete}
             type={type}
-            onChange={e => {
+            onChange={(e) => {
               _onChange(e);
             }}
             disabled={disabled}
@@ -170,7 +170,7 @@ const Input = props => {
           />
           {inlineElement}
         </div>
-        <span className='invalid-message'>{error && error[0]}</span>
+        <span className="invalid-message">{error && error[0]}</span>
       </div>
     );
   }
@@ -179,9 +179,9 @@ const Input = props => {
 Input.defaultProps = {
   step: 1,
   decimals: true,
-  rows: '4',
+  rows: "4",
   inlineElement: null,
-  autoComplete: 'on'
+  autoComplete: "on",
 };
 
 export default Input;
