@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "nodemon",
     "start": "cross-env NODE_ENV=production node index.js",
-    "prod": "pm2 start ecosystem.config.js"
+    "prod:start": "pm2 start ecosystem.config.js",
+    "prod:stop": "pm2 delete app1"
   },
   "dependencies": {
     "axios": "^0.21.1",
