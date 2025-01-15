@@ -217,7 +217,8 @@ export const addProduct = () => {
   return async (dispatch, getState) => {
     try {
       const rules = {
-        sku: 'required|alpha_dash',
+        // sku: 'required|alpha_dash',
+        sku: 'required',
         name: 'required',
         description: 'required', //description: 'required|max:200'
         quantity: 'required|numeric',
@@ -251,18 +252,17 @@ export const addProduct = () => {
       };
 
       const { isValid, errors } = allFieldsValidation(newProduct, rules, {
-        'required.sku': 'Sku is required.',
+        'required.sku': 'Le SKU est requis.',
         'alpha_dash.sku':
-          'Sku may have alpha-numeric characters, as well as dashes and underscores only.',
-        'required.name': 'Name is required.',
-        'required.description': 'Description is required.',
+        'Le SKU peut contenir des caractères alphanumériques, ainsi que des tirets et des underscores uniquement.',
+        'required.name': 'Le nom est requis.',
+        'required.description': 'La description est requise.',
         // 'max.description':
-        //   'Description may not be greater than 200 characters.',
-        'required.quantity': 'Quantity is required.',
-        'required.price': 'Price is required.',
-        'required.taxable': 'Taxable is required.',
-        'required.image': 'Please upload files with jpg, jpeg, png format.',
-        'required.brand': 'Brand is required.'
+        //   'La description ne peut pas dépasser 200 caractères.',
+        'required.quantity': 'La quantité est requise.',
+        'required.price': 'Le prix est requis.',
+        'required.image': 'Veuillez télécharger des fichiers au format jpg, jpeg, ou png.',
+        'required.brand': 'La marque est requise.'
       });
 
       if (!isValid) {
@@ -312,8 +312,10 @@ export const updateProduct = () => {
     try {
       const rules = {
         name: 'required',
-        sku: 'required|alpha_dash',
-        slug: 'required|alpha_dash',
+        // sku: 'required|alpha_dash',
+        // slug: 'required|alpha_dash',
+        sku: 'required',
+        slug: 'required',
         description: 'required', //        description: 'required|max:200',
         quantity: 'required|numeric',
         price: 'required|numeric',
@@ -349,20 +351,20 @@ export const updateProduct = () => {
       }
 
       const { isValid, errors } = allFieldsValidation(newProduct, rules, {
-        'required.name': 'Name is required.',
-        'required.sku': 'Sku is required.',
+        'required.name': 'Le nom est requis.',
+        'required.sku': 'Le SKU est requis.',
         'alpha_dash.sku':
-          'Sku may have alpha-numeric characters, as well as dashes and underscores only.',
-        'required.slug': 'Slug is required.',
+        'Le SKU peut contenir des caractères alphanumériques, ainsi que des tirets et des underscores uniquement.',
+        'required.slug': 'Le slug est requis.',
         'alpha_dash.slug':
-          'Slug may have alpha-numeric characters, as well as dashes and underscores only.',
-        'required.description': 'Description is required.',
+        'Le slug peut contenir des caractères alphanumériques, ainsi que des tirets et des underscores uniquement.',
+        'required.description': 'La description est requise.',
         'max.description':
-          'Description may not be greater than 200 characters.',
-        'required.quantity': 'Quantity is required.',
-        'required.price': 'Price is required.',
-        'required.taxable': 'Taxable is required.',
-        'required.brand': 'Brand is required.'
+        'La description ne peut pas dépasser 200 caractères.',
+        'required.quantity': 'La quantité est requise.',
+        'required.price': 'Le prix est requis.',
+        'required.taxable': 'La taxe est requise.',
+        'required.brand': 'La marque est requise.'
       });
 
       if (!isValid) {
